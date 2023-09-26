@@ -24,6 +24,7 @@
 		014FC1EB2AC3A48E0001BBAB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		014FC1EE2AC3A48E0001BBAB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		014FC1F02AC3A48E0001BBAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		014FC1F62AC3A5C50001BBAB /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +41,7 @@
 		014FC1D62AC3A48C0001BBAB = {
 			isa = PBXGroup;
 			children = (
+				014FC1F62AC3A5C50001BBAB /* README.md */,
 				014FC1E12AC3A48C0001BBAB /* Sports-Hub */,
 				014FC1E02AC3A48C0001BBAB /* Products */,
 			);
