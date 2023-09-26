@@ -1,0 +1,33 @@
+# Xcode Project
+**/*.xcodeproj/xcuserdata/
+**/*.xcworkspace/xcuserdata/
+**/.swiftpm/xcode/xcuserdata/
+**/*.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+**/*.xcworkspace/xcshareddata/*.xccheckout
+**/*.xcworkspace/xcshareddata/*.xcscmblueprint
+**/*.playground/**/timeline.xctimeline
+.idea/
+
+# Build
+Scripts/build/
+build/
+DerivedData/
+*.ipa
+
+# CocoaPods
+Pods/
+
+# CSV
+*.orig
+.svn
+
+# Hidden Folder
+Hidden/
+
+# Other
+*~
+*.DS_Store
+*.swp
+*.save
+._*
+*.bak
