@@ -58,15 +58,103 @@
 		014FC1E12AC3A48C0001BBAB /* Sports-Hub */ = {
 			isa = PBXGroup;
 			children = (
-				014FC1E22AC3A48C0001BBAB /* AppDelegate.swift */,
-				014FC1E42AC3A48D0001BBAB /* SceneDelegate.swift */,
-				014FC1E62AC3A48D0001BBAB /* ViewController.swift */,
-				014FC1E82AC3A48D0001BBAB /* Main.storyboard */,
-				014FC1EB2AC3A48E0001BBAB /* Assets.xcassets */,
-				014FC1ED2AC3A48E0001BBAB /* LaunchScreen.storyboard */,
-				014FC1F02AC3A48E0001BBAB /* Info.plist */,
+				014FC1F82AC3A63E0001BBAB /* Config */,
+				014FC1F72AC3A6350001BBAB /* Core */,
+				014FC1F92AC3A6680001BBAB /* Resources */,
+				014FC1FE2AC3A6CC0001BBAB /* Utilities */,
+				014FC1FD2AC3A6940001BBAB /* Services */,
+				014FC1FA2AC3A6760001BBAB /* Models */,
+				014FC1FB2AC3A67B0001BBAB /* Views */,
+				014FC1FC2AC3A6810001BBAB /* Scenes */,
 			);
 			path = "Sports-Hub";
+			sourceTree = "<group>";
+		};
+		014FC1F72AC3A6350001BBAB /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				014FC1E22AC3A48C0001BBAB /* AppDelegate.swift */,
+				014FC1E42AC3A48D0001BBAB /* SceneDelegate.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		014FC1F82AC3A63E0001BBAB /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				014FC1F02AC3A48E0001BBAB /* Info.plist */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		014FC1F92AC3A6680001BBAB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				014FC1EB2AC3A48E0001BBAB /* Assets.xcassets */,
+				014FC1ED2AC3A48E0001BBAB /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		014FC1FA2AC3A6760001BBAB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		014FC1FB2AC3A67B0001BBAB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				014FC2032AC3A7F60001BBAB /* CollectionViewCells */,
+				014FC2022AC3A7E80001BBAB /* TableViewCells */,
+				014FC1E82AC3A48D0001BBAB /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		014FC1FC2AC3A6810001BBAB /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				014FC1E62AC3A48D0001BBAB /* ViewController.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		014FC1FD2AC3A6940001BBAB /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		014FC1FE2AC3A6CC0001BBAB /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				014FC1FF2AC3A6E50001BBAB /* Extensions */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		014FC1FF2AC3A6E50001BBAB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		014FC2022AC3A7E80001BBAB /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		014FC2032AC3A7F60001BBAB /* CollectionViewCells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CollectionViewCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -291,7 +379,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = R7KL845XH9;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Sports-Hub/Info.plist";
+				INFOPLIST_FILE = "Sports-Hub/Config/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -322,7 +410,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = R7KL845XH9;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Sports-Hub/Info.plist";
+				INFOPLIST_FILE = "Sports-Hub/Config/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
