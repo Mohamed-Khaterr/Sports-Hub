@@ -109,7 +109,7 @@ extension SportCollectionViewCell: SportCellView {
     }
     
     func setBackgroundImageView(withURL url: URL?) {
-        backgroundImageView.kf.setImage(with: url)
+        backgroundImageView.setImage(withURL: url)
     }
     
     func setTitleLabel(withText text: String) {
