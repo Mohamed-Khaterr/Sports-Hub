@@ -26,6 +26,7 @@
 		01730CC52AC853DC00F29B8C /* LeagueDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01730CC32AC853DC00F29B8C /* LeagueDetailsViewController.xib */; };
 		01730CC92AC88F9E00F29B8C /* CVHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01730CC82AC88F9E00F29B8C /* CVHeaderView.swift */; };
 		017D675E2AC4F74300D19D03 /* EventCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017D675D2AC4F74300D19D03 /* EventCellView.swift */; };
+		01C45A452AC9C9150044B38F /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C45A442AC9C9150044B38F /* NetworkService.swift */; };
 		01EAB1B02AC8C951004179F5 /* LeagueDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EAB1AF2AC8C951004179F5 /* LeagueDetailsViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +51,7 @@
 		01730CC32AC853DC00F29B8C /* LeagueDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeagueDetailsViewController.xib; sourceTree = "<group>"; };
 		01730CC82AC88F9E00F29B8C /* CVHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVHeaderView.swift; sourceTree = "<group>"; };
 		017D675D2AC4F74300D19D03 /* EventCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCellView.swift; sourceTree = "<group>"; };
+		01C45A442AC9C9150044B38F /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		01EAB1AF2AC8C951004179F5 /* LeagueDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueDetailsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -154,6 +156,7 @@
 		014FC1FD2AC3A6940001BBAB /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				01C45A432AC9C9090044B38F /* Network */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -269,6 +272,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		01C45A432AC9C9090044B38F /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				01C45A442AC9C9150044B38F /* NetworkService.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -356,6 +367,7 @@
 				017D675E2AC4F74300D19D03 /* EventCellView.swift in Sources */,
 				017251F42AC4C9B400A486D9 /* EventCollectionViewCell.swift in Sources */,
 				014FC1E72AC3A48D0001BBAB /* ViewController.swift in Sources */,
+				01C45A452AC9C9150044B38F /* NetworkService.swift in Sources */,
 				014FC1E32AC3A48C0001BBAB /* AppDelegate.swift in Sources */,
 				01730CC42AC853DC00F29B8C /* LeagueDetailsViewController.swift in Sources */,
 				01730CC92AC88F9E00F29B8C /* CVHeaderView.swift in Sources */,
