@@ -32,6 +32,9 @@
 		01CA52942ACA778700EEC4BF /* Hidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA52932ACA778700EEC4BF /* Hidden.swift */; };
 		01CA52962ACA782100EEC4BF /* Football.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA52952ACA782100EEC4BF /* Football.swift */; };
 		01CA52982ACA787D00EEC4BF /* AllSportsNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA52972ACA787D00EEC4BF /* AllSportsNetworkProvider.swift */; };
+		01CA529A2ACA78BF00EEC4BF /* AllSportsNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA52992ACA78BF00EEC4BF /* AllSportsNetworkService.swift */; };
+		01CA529C2ACA78FC00EEC4BF /* ASDataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA529B2ACA78FC00EEC4BF /* ASDataResponse.swift */; };
+		01CA529E2ACA795300EEC4BF /* ASErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA529D2ACA795300EEC4BF /* ASErrorResponse.swift */; };
 		01EAB1B02AC8C951004179F5 /* LeagueDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EAB1AF2AC8C951004179F5 /* LeagueDetailsViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +65,9 @@
 		01CA52932ACA778700EEC4BF /* Hidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hidden.swift; sourceTree = "<group>"; };
 		01CA52952ACA782100EEC4BF /* Football.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Football.swift; sourceTree = "<group>"; };
 		01CA52972ACA787D00EEC4BF /* AllSportsNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSportsNetworkProvider.swift; sourceTree = "<group>"; };
+		01CA52992ACA78BF00EEC4BF /* AllSportsNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSportsNetworkService.swift; sourceTree = "<group>"; };
+		01CA529B2ACA78FC00EEC4BF /* ASDataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASDataResponse.swift; sourceTree = "<group>"; };
+		01CA529D2ACA795300EEC4BF /* ASErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASErrorResponse.swift; sourceTree = "<group>"; };
 		01EAB1AF2AC8C951004179F5 /* LeagueDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueDetailsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -140,6 +146,8 @@
 		014FC1FA2AC3A6760001BBAB /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				01CA529B2ACA78FC00EEC4BF /* ASDataResponse.swift */,
+				01CA529D2ACA795300EEC4BF /* ASErrorResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -291,6 +299,7 @@
 				01CA528E2ACA753800EEC4BF /* AllSportsAPIEndPoint.swift */,
 				01CA52902ACA759800EEC4BF /* AllSportsAPIEndPointManager.swift */,
 				01CA52972ACA787D00EEC4BF /* AllSportsNetworkProvider.swift */,
+				01CA52992ACA78BF00EEC4BF /* AllSportsNetworkService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -403,7 +412,9 @@
 				01CA52982ACA787D00EEC4BF /* AllSportsNetworkProvider.swift in Sources */,
 				01CA528F2ACA753800EEC4BF /* AllSportsAPIEndPoint.swift in Sources */,
 				01C45A452AC9C9150044B38F /* NetworkService.swift in Sources */,
+				01CA529A2ACA78BF00EEC4BF /* AllSportsNetworkService.swift in Sources */,
 				014FC1E32AC3A48C0001BBAB /* AppDelegate.swift in Sources */,
+				01CA529E2ACA795300EEC4BF /* ASErrorResponse.swift in Sources */,
 				01730CC42AC853DC00F29B8C /* LeagueDetailsViewController.swift in Sources */,
 				01730CC92AC88F9E00F29B8C /* CVHeaderView.swift in Sources */,
 				01CA52942ACA778700EEC4BF /* Hidden.swift in Sources */,
@@ -411,6 +422,7 @@
 				01EAB1B02AC8C951004179F5 /* LeagueDetailsViewModel.swift in Sources */,
 				014FC1E52AC3A48D0001BBAB /* SceneDelegate.swift in Sources */,
 				01501EF72AC59CF10068CA83 /* SportCollectionViewCell.swift in Sources */,
+				01CA529C2ACA78FC00EEC4BF /* ASDataResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
