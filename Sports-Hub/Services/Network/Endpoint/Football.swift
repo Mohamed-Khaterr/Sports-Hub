@@ -8,7 +8,7 @@
 import Foundation
 
 
-enum Football: AllSportsAPIEndPoint {
+enum Football: ASEndPoint {
     case countries
     case leagues(countryID: Int? = nil)
     case fixtures(from: String, to: String, timezone: String? = nil, leagueID: Int? = nil)

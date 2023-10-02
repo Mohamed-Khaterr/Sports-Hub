@@ -1,5 +1,5 @@
 //
-//  AllSportsNetworkService.swift
+//  ASNetworkService.swift
 //  Sports-Hub
 //
 //  Created by Khater on 01/10/2023.
@@ -9,13 +9,13 @@ import Foundation
 import Alamofire
 
 
-struct AllSportsNetworkService: AllSportsNetworkProvider {
-    static let shared = AllSportsNetworkService()
+struct ASNetworkService: ASNetworkProvider {
+    static let shared = ASNetworkService()
     
     private init() {}
     
-    func fetch<T: Decodable>(_ type: T.Type, endpoint: AllSportsAPIEndPoint, compeletionHandler: @escaping (Result<T, Error>) -> Void) {
-        let endpointManager = AllSportsAPIEndPointManager(endpoint)
+    func fetch<T: Decodable>(_ type: T.Type, endpoint: ASEndPoint, compeletionHandler: @escaping (Result<T, Error>) -> Void) {
+        let endpointManager = ASEndPointManager(endpoint)
         AF.request(endpointManager.urlString(), method: .get, parameters: endpointManager.parameters()).response { response in
             switch response.result {
             case .success(let data):
