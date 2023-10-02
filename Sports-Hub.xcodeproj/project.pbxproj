@@ -30,6 +30,7 @@
 		01CA528F2ACA753800EEC4BF /* AllSportsAPIEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA528E2ACA753800EEC4BF /* AllSportsAPIEndPoint.swift */; };
 		01CA52912ACA759800EEC4BF /* AllSportsAPIEndPointManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA52902ACA759800EEC4BF /* AllSportsAPIEndPointManager.swift */; };
 		01CA52942ACA778700EEC4BF /* Hidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA52932ACA778700EEC4BF /* Hidden.swift */; };
+		01CA52962ACA782100EEC4BF /* Football.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA52952ACA782100EEC4BF /* Football.swift */; };
 		01EAB1B02AC8C951004179F5 /* LeagueDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EAB1AF2AC8C951004179F5 /* LeagueDetailsViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		01CA528E2ACA753800EEC4BF /* AllSportsAPIEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSportsAPIEndPoint.swift; sourceTree = "<group>"; };
 		01CA52902ACA759800EEC4BF /* AllSportsAPIEndPointManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSportsAPIEndPointManager.swift; sourceTree = "<group>"; };
 		01CA52932ACA778700EEC4BF /* Hidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hidden.swift; sourceTree = "<group>"; };
+		01CA52952ACA782100EEC4BF /* Football.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Football.swift; sourceTree = "<group>"; };
 		01EAB1AF2AC8C951004179F5 /* LeagueDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueDetailsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -293,6 +295,7 @@
 		01CA528D2ACA74D800EEC4BF /* Endpoint */ = {
 			isa = PBXGroup;
 			children = (
+				01CA52952ACA782100EEC4BF /* Football.swift */,
 			);
 			path = Endpoint;
 			sourceTree = "<group>";
@@ -386,6 +389,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01CA52962ACA782100EEC4BF /* Football.swift in Sources */,
 				01501EFB2AC5AE6E0068CA83 /* UIImageView+Extension.swift in Sources */,
 				014FC20D2AC3AC860001BBAB /* TabBarController.swift in Sources */,
 				01CA52912ACA759800EEC4BF /* AllSportsAPIEndPointManager.swift in Sources */,
