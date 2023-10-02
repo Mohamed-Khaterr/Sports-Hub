@@ -275,9 +275,17 @@
 		01C45A432AC9C9090044B38F /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				01CA528D2ACA74D800EEC4BF /* Endpoint */,
 				01C45A442AC9C9150044B38F /* NetworkService.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		01CA528D2ACA74D800EEC4BF /* Endpoint */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Endpoint;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
