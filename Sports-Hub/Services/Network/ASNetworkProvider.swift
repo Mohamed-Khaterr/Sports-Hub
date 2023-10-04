@@ -9,5 +9,5 @@ import Foundation
 
 
 protocol ASNetworkProvider {
-    func fetch<T: Decodable>(_ type: T.Type, endpoint: ASEndPoint, compeletionHandler: @escaping (Result<T, Error>) -> Void)
+    func fetch<T: Decodable>(_ type: T.Type, endpoint: ASEndPoint, compeletionHandler: @escaping (Result<T, NetworkError>) -> Void)
 }
