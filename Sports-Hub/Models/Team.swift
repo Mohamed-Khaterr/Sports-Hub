@@ -33,7 +33,7 @@ struct Player: Codable {
     let number: String
     let position: String
     let rate: String
-    let imageURLString: String
+    let imageURLString: String?
     
     enum CodingKeys: String, CodingKey {
         case id = "player_key"
