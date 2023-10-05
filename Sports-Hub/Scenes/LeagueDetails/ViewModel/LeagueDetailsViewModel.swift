@@ -67,8 +67,10 @@ class LeagueDetailsViewModel {
         }
     }
     
-    func configTeamCell(atIndex index: Int) {
-        // TODO: Implement
+    func configTeamCell(_ cell: CollectionViewCell, atIndex index: Int) {
+        let team = teams[index]
+        cell.team_image.setImage(withURL: URL(string: team.logoURLString))
+        cell.team_label.text = team.name
     }
     
     private func getData(withNextYear returnNextYear: Bool) -> (String, String) {

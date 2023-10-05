@@ -88,7 +88,7 @@ class SportsViewController: UIViewController {
     
     private func bindViewModel() {
         viewModel.didSelectSport = { [weak self] in
-            print("DidSelectSport")
+            self?.navigationController?.pushViewController(TableView_XIB(), animated: true)
         }
     }
 }

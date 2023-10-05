@@ -51,6 +51,7 @@ class LeagueDetailsViewController: UIViewController {
     private func setupCollectionView() {
         collectionView.register(EventCollectionViewCell.nib(), forCellWithReuseIdentifier: EventCollectionViewCell.identifier)
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "defaultCell")
+        collectionView.register(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TeamCell")
         collectionView.register(CVHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CVHeaderView.identifier)
         
         collectionView.delegate = self
@@ -100,20 +101,28 @@ class LeagueDetailsViewController: UIViewController {
     }
     
     private func teamSectionLayout() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let itemSize = NSCollectionLayoutSize (widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(130), heightDimension: .absolute(130))
+        let item = NSCollectionLayoutItem (layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize (widthDimension: .fractionalWidth(0.4), heightDimension: .absolute(155))
+        
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        group.contentInsets = .init(top: 8, leading: 8, bottom: 8, trailing: 8)
+        
+        group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 15)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets (top: 0, leading: 0, bottom: 0, trailing: 10)
+        
+        section.orthogonalScrollingBehavior = .continuous
+        
+        section.visibleItemsInvalidationHandler = { (items, offset, environment) in     items.forEach { item in     let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 2.0);     let minScale: CGFloat = 0.8;     let maxScale: CGFloat = 1.0;     let scale = max(maxScale - (distanceFromCenter / environment.container.contentSize.width), minScale);     item.transform = CGAffineTransform(scaleX: scale, y: scale) }}
+        
         
         let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(44))
         let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
                                                                  elementKind: UICollectionView.elementKindSectionHeader,
                                                                  alignment: .top)
-        
-        let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .continuous
         section.boundarySupplementaryItems = [header]
         
         return section
@@ -126,7 +135,7 @@ class LeagueDetailsViewController: UIViewController {
         }
         
         viewModel.showLoadingIndicator = { [weak self] isLoading in
-            print("Loaing: \(isLoading)")
+            //print("Loaing: \(isLoading)")
             // TODO: Create Custom Loading Alert
         }
         
@@ -150,8 +159,8 @@ extension LeagueDetailsViewController: UICollectionViewDelegate, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 2 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "defaultCell", for: indexPath)
-            cell.backgroundColor = .green
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamCell", for: indexPath) as! CollectionViewCell
+            viewModel.configTeamCell(cell, atIndex: indexPath.row)
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EventCollectionViewCell.identifier, for: indexPath) as! EventCollectionViewCell
@@ -164,5 +173,10 @@ extension LeagueDetailsViewController: UICollectionViewDelegate, UICollectionVie
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CVHeaderView.identifier, for: indexPath) as! CVHeaderView
         viewModel.configHeaderView(header, atSection: indexPath.section)
         return header
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard indexPath.section == 2 else { return }
+        self.navigationController?.pushViewController(TeamViewController(), animated: true)
     }
 }
