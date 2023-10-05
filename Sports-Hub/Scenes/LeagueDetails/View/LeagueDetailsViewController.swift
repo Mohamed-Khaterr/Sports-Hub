@@ -14,12 +14,36 @@ class LeagueDetailsViewController: UIViewController {
     
     // MARK: - Properties
     private let viewModel = LeagueDetailsViewModel()
+    private var isFavorite = false
+    private var favBarButtonImageName: String {
+        return isFavorite ? "heart.fill" : "heart"
+    }
 
     // MARK: LifeCycel
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "League Details"
+        setupNavigationBar()
         setupCollectionView()
+        bind()
+        viewModel.fetchUpcomingEvents()
+        viewModel.fetchLatestEvents()
+        viewModel.fetchLeagueTeams()
+    }
+    
+    // MARK: - NavigationBar
+    private func setupNavigationBar() {
+        title = "League Details"
+        let favBarButton = UIBarButtonItem(image: UIImage(systemName: favBarButtonImageName), style: .done, target: self, action: #selector(favoriteButtonPressed))
+        favBarButton.tintColor = .label
+        navigationItem.rightBarButtonItem = favBarButton
+    }
+    
+    // MARK: - Favorite Button
+    @objc private func favoriteButtonPressed() {
+        isFavorite = !isFavorite
+        navigationItem.rightBarButtonItem?.image = UIImage(systemName: favBarButtonImageName)
+        
+        // TODO: Save to CoreData
     }
     
     
@@ -94,6 +118,22 @@ class LeagueDetailsViewController: UIViewController {
         
         return section
     }
+    
+    // MARK: - Bind
+    private func bind() {
+        viewModel.render = { [weak self] in
+            self?.collectionView.reloadData()
+        }
+        
+        viewModel.showLoadingIndicator = { [weak self] isLoading in
+            print("Loaing: \(isLoading)")
+            // TODO: Create Custom Loading Alert
+        }
+        
+        viewModel.errorOccurred = { errorMessage in
+            print(errorMessage)
+        }
+    }
 }
 
 
@@ -105,7 +145,7 @@ extension LeagueDetailsViewController: UICollectionViewDelegate, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.noOfItems
+        return viewModel.noOfItems(in: section)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
