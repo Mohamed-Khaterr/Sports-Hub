@@ -30,7 +30,6 @@ class TabBarController: UITabBarController {
     private func setupTabs() {
         let sportsVC = SportsViewController()
         let fav = TableView_XIB()
-        fav.view.backgroundColor = .blue
         
         let vcs: [UIViewController] = [
             createNavigationController(withRoot: sportsVC, barTitle: "Sports", barImage: UIImage(named: "sports")),
