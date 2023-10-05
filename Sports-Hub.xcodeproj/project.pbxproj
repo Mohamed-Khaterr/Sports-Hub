@@ -37,6 +37,7 @@
 		01730CC52AC853DC00F29B8C /* LeagueDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01730CC32AC853DC00F29B8C /* LeagueDetailsViewController.xib */; };
 		01730CC92AC88F9E00F29B8C /* CVHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01730CC82AC88F9E00F29B8C /* CVHeaderView.swift */; };
 		017D675E2AC4F74300D19D03 /* EventCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017D675D2AC4F74300D19D03 /* EventCellView.swift */; };
+		018FCFF82ACF72C000363F00 /* SportType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018FCFF72ACF72C000363F00 /* SportType.swift */; };
 		01B3F6B82ACF5D4D00490D64 /* Cricket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B3F6B72ACF5D4D00490D64 /* Cricket.swift */; };
 		01CA528F2ACA753800EEC4BF /* ASEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA528E2ACA753800EEC4BF /* ASEndPoint.swift */; };
 		01CA52912ACA759800EEC4BF /* ASEndPointManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA52902ACA759800EEC4BF /* ASEndPointManager.swift */; };
@@ -85,6 +86,7 @@
 		01730CC32AC853DC00F29B8C /* LeagueDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeagueDetailsViewController.xib; sourceTree = "<group>"; };
 		01730CC82AC88F9E00F29B8C /* CVHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVHeaderView.swift; sourceTree = "<group>"; };
 		017D675D2AC4F74300D19D03 /* EventCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCellView.swift; sourceTree = "<group>"; };
+		018FCFF72ACF72C000363F00 /* SportType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportType.swift; sourceTree = "<group>"; };
 		01B3F6B72ACF5D4D00490D64 /* Cricket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cricket.swift; sourceTree = "<group>"; };
 		01CA528E2ACA753800EEC4BF /* ASEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASEndPoint.swift; sourceTree = "<group>"; };
 		01CA52902ACA759800EEC4BF /* ASEndPointManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASEndPointManager.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 				01CA529F2ACA848F00EEC4BF /* League.swift */,
 				01CA52A12ACA860C00EEC4BF /* Event.swift */,
 				01CA52A32ACA8AF600EEC4BF /* Team.swift */,
+				018FCFF72ACF72C000363F00 /* SportType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -502,6 +505,7 @@
 				01CA52942ACA778700EEC4BF /* Hidden.swift in Sources */,
 				01501EF32AC58D3D0068CA83 /* SportsViewController.swift in Sources */,
 				01CA52A62ACA954D00EEC4BF /* NetworkError.swift in Sources */,
+				018FCFF82ACF72C000363F00 /* SportType.swift in Sources */,
 				01EAB1B02AC8C951004179F5 /* LeagueDetailsViewModel.swift in Sources */,
 				014FC1E52AC3A48D0001BBAB /* SceneDelegate.swift in Sources */,
 				01501EF72AC59CF10068CA83 /* SportCollectionViewCell.swift in Sources */,
