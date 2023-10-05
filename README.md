@@ -82,3 +82,5 @@ First Page | Second Page | Third Page
 ![]() | ![]() | ![]()
 ![]() | ![]() | ![]()
 ![](https://techcrunch.com/wp-content/uploads/2020/07/iOS-14.png) | ![](https://techcrunch.com/wp-content/uploads/2020/07/iOS-14.png) | ![](https://techcrunch.com/wp-content/uploads/2020/07/iOS-14.png)
+
+this is an edit
