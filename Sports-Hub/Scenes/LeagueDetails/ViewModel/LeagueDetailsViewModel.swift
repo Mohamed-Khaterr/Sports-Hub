@@ -50,9 +50,9 @@ class LeagueDetailsViewModel {
             cell.setDate(event.date)
             cell.setTime(event.time)
             cell.setNames(homeTeam: event.homeTeamName, awayTeam: event.awayTeamName)
-            cell.setImages(league: URL(string: event.leagueLogoURLString),
-                           homeTeam: URL(string: event.homeTeamLogoURLString),
-                           awayTeam: URL(string: event.awayTeamLogoURLString))
+            cell.setImages(league: URL(string: event.leagueLogoURLString ?? ""),
+                           homeTeam: URL(string: event.homeTeamLogoURLString ?? ""),
+                           awayTeam: URL(string: event.awayTeamLogoURLString ?? ""))
         case 1:
             let event = latestEvents[index]
             cell.setupCellUI()
@@ -60,16 +60,16 @@ class LeagueDetailsViewModel {
             cell.setDate(event.date)
             cell.setTime(event.time)
             cell.setNames(homeTeam: event.homeTeamName, awayTeam: event.awayTeamName)
-            cell.setImages(league: URL(string: event.leagueLogoURLString),
-                           homeTeam: URL(string: event.homeTeamLogoURLString),
-                           awayTeam: URL(string: event.awayTeamLogoURLString))
+            cell.setImages(league: URL(string: event.leagueLogoURLString ?? ""),
+                           homeTeam: URL(string: event.homeTeamLogoURLString ?? ""),
+                           awayTeam: URL(string: event.awayTeamLogoURLString ?? ""))
         default: return
         }
     }
     
     func configTeamCell(_ cell: CollectionViewCell, atIndex index: Int) {
         let team = teams[index]
-        cell.team_image.setImage(withURL: URL(string: team.logoURLString))
+        cell.team_image.setImage(withURL: URL(string: team.logoURLString ?? ""))
         cell.team_label.text = team.name
     }
     

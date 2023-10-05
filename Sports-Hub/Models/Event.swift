@@ -16,15 +16,15 @@ struct Event: Codable {
     let status: String // "" || "Finished"
     
     let season: String
-    let round: String
-    let stadium: String
+    let round: String?
+    let stadium: String?
     
-    let leagueLogoURLString: String
+    let leagueLogoURLString: String?
     
     let homeTeamName: String
-    let homeTeamLogoURLString: String
+    let homeTeamLogoURLString: String?
     let awayTeamName: String
-    let awayTeamLogoURLString: String
+    let awayTeamLogoURLString: String?
     
     
     enum CodingKeys: String, CodingKey {

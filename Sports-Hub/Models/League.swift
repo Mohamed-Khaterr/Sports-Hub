@@ -11,8 +11,8 @@ import Foundation
 struct League: Codable {
     let id: Int
     let name: String
-    let logoURLString: String
-    let countryLogoURLString: String
+    let logoURLString: String?
+    let countryLogoURLString: String?
     
     enum CodingKeys: String, CodingKey {
         case id = "league_key"
