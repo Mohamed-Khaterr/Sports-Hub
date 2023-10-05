@@ -47,7 +47,7 @@ class LeagueDetailsViewModel {
             let event = upcomingEvents[index]
             cell.setupCellUI()
             cell.hideScore()
-            cell.setDate(event.date)
+            cell.setDate(event.date ?? "")
             cell.setTime(event.time)
             cell.setNames(homeTeam: event.homeTeamName, awayTeam: event.awayTeamName)
             cell.setImages(league: URL(string: event.leagueLogoURLString ?? ""),
@@ -56,8 +56,8 @@ class LeagueDetailsViewModel {
         case 1:
             let event = latestEvents[index]
             cell.setupCellUI()
-            cell.setScore(event.result)
-            cell.setDate(event.date)
+            cell.setScore(event.result ?? "")
+            cell.setDate(event.date ?? "")
             cell.setTime(event.time)
             cell.setNames(homeTeam: event.homeTeamName, awayTeam: event.awayTeamName)
             cell.setImages(league: URL(string: event.leagueLogoURLString ?? ""),
