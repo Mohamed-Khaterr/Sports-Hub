@@ -8,8 +8,8 @@
 import Foundation
 
 
-enum SportType {
-    case football
-    case basketball
-    case cricket
+enum SportType: String {
+    case football = "Football"
+    case basketball = "Basketball"
+    case cricket = "Cricket"
 }

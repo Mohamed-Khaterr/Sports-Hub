@@ -10,7 +10,7 @@ import Foundation
 
 protocol SportsViewModelProtocol {
     var noOfItems: Int { get }
-    var didSelectSport: () -> Void { get set }
+    var didSelectSport: ((SportType) -> Void)? { get set }
     
     func configuarCell(_ cell: SportCellView, at index: Int)
     func selectedSport(at index: Int)
@@ -29,7 +29,7 @@ class SportsViewModel: SportsViewModelProtocol {
         return sports.count
     }
     
-    var didSelectSport: () -> Void = {}
+    var didSelectSport: ((SportType) -> Void)?
     
     func configuarCell(_ cell: SportCellView, at index: Int){
         let sport = sports[index]
@@ -38,6 +38,9 @@ class SportsViewModel: SportsViewModelProtocol {
     }
     
     func selectedSport(at index: Int) {
-        didSelectSport()
+        let sportTitle = sports[index].title
+        if let sportType = SportType(rawValue: sportTitle) {
+            didSelectSport?(sportType)
+        }
     }
 }
