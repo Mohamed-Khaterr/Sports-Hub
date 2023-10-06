@@ -62,10 +62,15 @@ extension EventCollectionViewCell: EventCellView {
         [homeTeamNameLabel, awayTeamLabel, scoreLabel, timeLabel, dateLabel].forEach({ $0?.textColor = .white })
     }
     
-    func setImages(league: URL?, homeTeam: URL?, awayTeam: URL?) {
-        leagueImageView.kf.setImage(with: league)
-        homeTeamImageView.kf.setImage(with: homeTeam)
-        awayTeamImageView.kf.setImage(with: awayTeam)
+    func setLeagueImage(withURL url: URL?, defaultImage: String?) {
+        leagueImageView.setImage(withURL: url, defaultImage: defaultImage)
+    }
+    
+    func setHomeTeamImage(withURL url: URL?, defaultImage: String?) {
+        homeTeamImageView.setImage(withURL: url, defaultImage: defaultImage)
+    }
+    func setAwayTeamImage(withURL url: URL?, defaultImage: String?) {
+        awayTeamImageView.setImage(withURL: url, defaultImage: defaultImage)
     }
     
     func setNames(homeTeam: String, awayTeam: String) {
