@@ -10,6 +10,7 @@
 		0123F2FF2ACEF98400AAF74C /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0123F2FD2ACEF98400AAF74C /* CollectionViewCell.swift */; };
 		0123F3002ACEF98400AAF74C /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0123F2FE2ACEF98400AAF74C /* CollectionViewCell.xib */; };
 		0123F30B2ACF215000AAF74C /* Basketball.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0123F30A2ACF215000AAF74C /* Basketball.swift */; };
+		012B70692AD0B13C00627A6F /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012B70682AD0B13C00627A6F /* Constant.swift */; };
 		014FC1E32AC3A48C0001BBAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014FC1E22AC3A48C0001BBAB /* AppDelegate.swift */; };
 		014FC1E52AC3A48D0001BBAB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014FC1E42AC3A48D0001BBAB /* SceneDelegate.swift */; };
 		014FC1EC2AC3A48E0001BBAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 014FC1EB2AC3A48E0001BBAB /* Assets.xcassets */; };
@@ -66,6 +67,7 @@
 		0123F2FD2ACEF98400AAF74C /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		0123F2FE2ACEF98400AAF74C /* CollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
 		0123F30A2ACF215000AAF74C /* Basketball.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Basketball.swift; sourceTree = "<group>"; };
+		012B70682AD0B13C00627A6F /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		014FC1DF2AC3A48C0001BBAB /* Sports-Hub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sports-Hub.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		014FC1E22AC3A48C0001BBAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		014FC1E42AC3A48D0001BBAB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 		014FC1FE2AC3A6CC0001BBAB /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				012B70682AD0B13C00627A6F /* Constant.swift */,
 				014FC1FF2AC3A6E50001BBAB /* Extensions */,
 			);
 			path = Utilities;
@@ -534,6 +537,8 @@
 				01CA52A22ACA860C00EEC4BF /* Event.swift in Sources */,
 				01866DD22AD03E5C004386B0 /* reload_protocol.swift in Sources */,
 				0123F2FF2ACEF98400AAF74C /* CollectionViewCell.swift in Sources */,
+				012B70692AD0B13C00627A6F /* Constant.swift in Sources */,
+				84862E232AD0544300E605A5 /* Hidden.swift in Sources */,
 				01CA52982ACA787D00EEC4BF /* ASNetworkProvider.swift in Sources */,
 				01B3F6B82ACF5D4D00490D64 /* Cricket.swift in Sources */,
 				01CA528F2ACA753800EEC4BF /* ASEndPoint.swift in Sources */,

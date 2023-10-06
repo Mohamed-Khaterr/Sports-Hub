@@ -10,7 +10,9 @@ import Foundation
 
 protocol EventCellView {
     func setupCellUI()
-    func setImages(league: URL?, homeTeam: URL?, awayTeam: URL?)
+    func setLeagueImage(withURL url: URL?, defaultImage: String?)
+    func setHomeTeamImage(withURL url: URL?, defaultImage: String?)
+    func setAwayTeamImage(withURL url: URL?, defaultImage: String?)
     func setNames(homeTeam: String, awayTeam: String)
     func setScore(_ score: String)
     func hideScore()

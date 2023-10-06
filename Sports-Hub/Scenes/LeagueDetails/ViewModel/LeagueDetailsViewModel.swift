@@ -54,6 +54,13 @@ class LeagueDetailsViewModel {
     }
     
     func configEventCell(_ cell: EventCellView, atIndex index: Int, andSection section: Int) {
+        let defaultTeamImageName: String
+        switch sportType {
+        case .football: defaultTeamImageName = Constant.footballImageName
+        case .basketball: defaultTeamImageName = Constant.basketballImageName
+        case .cricket: defaultTeamImageName = Constant.cricketImageName
+        }
+        
         switch section {
         case 0:
             let event = upcomingEvents[index]
@@ -62,9 +69,9 @@ class LeagueDetailsViewModel {
             cell.setDate(event.date ?? "")
             cell.setTime(event.time)
             cell.setNames(homeTeam: event.homeTeamName, awayTeam: event.awayTeamName)
-            cell.setImages(league: URL(string: event.leagueLogoURLString ?? ""),
-                           homeTeam: URL(string: event.homeTeamLogoURLString ?? ""),
-                           awayTeam: URL(string: event.awayTeamLogoURLString ?? ""))
+            cell.setLeagueImage(withURL: URL(string: event.leagueLogoURLString ?? ""), defaultImage: nil)
+            cell.setHomeTeamImage(withURL: URL(string: event.homeTeamLogoURLString ?? ""), defaultImage: defaultTeamImageName)
+            cell.setAwayTeamImage(withURL: URL(string: event.awayTeamLogoURLString ?? ""), defaultImage: defaultTeamImageName)
         case 1:
             let event = latestEvents[index]
             cell.setupCellUI()
@@ -72,9 +79,9 @@ class LeagueDetailsViewModel {
             cell.setDate(event.date ?? "")
             cell.setTime(event.time)
             cell.setNames(homeTeam: event.homeTeamName, awayTeam: event.awayTeamName)
-            cell.setImages(league: URL(string: event.leagueLogoURLString ?? ""),
-                           homeTeam: URL(string: event.homeTeamLogoURLString ?? ""),
-                           awayTeam: URL(string: event.awayTeamLogoURLString ?? ""))
+            cell.setLeagueImage(withURL: URL(string: event.leagueLogoURLString ?? ""), defaultImage: nil)
+            cell.setHomeTeamImage(withURL: URL(string: event.homeTeamLogoURLString ?? ""), defaultImage: defaultTeamImageName)
+            cell.setAwayTeamImage(withURL: URL(string: event.awayTeamLogoURLString ?? ""), defaultImage: defaultTeamImageName)
         default: return
         }
     }
