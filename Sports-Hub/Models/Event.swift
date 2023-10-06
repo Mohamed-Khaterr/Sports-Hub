@@ -10,21 +10,21 @@ import Foundation
 
 struct Event: Codable {
     let id: Int
-    let date: String
+    let date: String?
     let time: String
-    let result: String
-    let status: String // "" || "Finished"
+    let result: String?
+    let status: String
     
     let season: String
-    let round: String
-    let stadium: String
+    let round: String?
+    let stadium: String?
     
-    let leagueLogoURLString: String
+    let leagueLogoURLString: String?
     
     let homeTeamName: String
-    let homeTeamLogoURLString: String
+    let homeTeamLogoURLString: String?
     let awayTeamName: String
-    let awayTeamLogoURLString: String
+    let awayTeamLogoURLString: String?
     
     
     enum CodingKeys: String, CodingKey {

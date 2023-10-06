@@ -13,7 +13,7 @@ class LeagueDetailsViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     // MARK: - Properties
-    private let viewModel = LeagueDetailsViewModel()
+    let viewModel = LeagueDetailsViewModel()
     private var isFavorite = false
     private var favBarButtonImageName: String {
         return isFavorite ? "heart.fill" : "heart"

@@ -87,8 +87,11 @@ class SportsViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        viewModel.didSelectSport = { [weak self] in
+        viewModel.didSelectSport = { [weak self] sportType in
             self?.navigationController?.pushViewController(TableView_XIB(), animated: true)
+//            let leagueDetailsVC = LeagueDetailsViewController()
+//            leagueDetailsVC.viewModel.setSportType(sportType)
+//            self?.navigationController?.pushViewController(leagueDetailsVC, animated: true)
         }
     }
 }
@@ -107,7 +110,6 @@ extension SportsViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath)
         viewModel.selectedSport(at: indexPath.item)
     }
 }

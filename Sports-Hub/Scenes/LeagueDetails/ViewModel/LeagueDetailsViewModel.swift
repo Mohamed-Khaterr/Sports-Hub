@@ -9,9 +9,20 @@ import Foundation
 
 
 class LeagueDetailsViewModel {
+    private var leagueID = 0
+    private var sportType: SportType = .football
+    
     private var upcomingEvents: [Event] = []
     private var latestEvents: [Event] = []
     private var teams: [Team] = []
+    
+    func setLeague(id: Int) {
+        leagueID = id
+    }
+    
+    func setSportType(_ type: SportType) {
+        sportType = type
+    }
     
     var showLoadingIndicator: ((Bool) -> Void)?
     var render: (() -> Void)?
@@ -47,29 +58,29 @@ class LeagueDetailsViewModel {
             let event = upcomingEvents[index]
             cell.setupCellUI()
             cell.hideScore()
-            cell.setDate(event.date)
+            cell.setDate(event.date ?? "")
             cell.setTime(event.time)
             cell.setNames(homeTeam: event.homeTeamName, awayTeam: event.awayTeamName)
-            cell.setImages(league: URL(string: event.leagueLogoURLString),
-                           homeTeam: URL(string: event.homeTeamLogoURLString),
-                           awayTeam: URL(string: event.awayTeamLogoURLString))
+            cell.setImages(league: URL(string: event.leagueLogoURLString ?? ""),
+                           homeTeam: URL(string: event.homeTeamLogoURLString ?? ""),
+                           awayTeam: URL(string: event.awayTeamLogoURLString ?? ""))
         case 1:
             let event = latestEvents[index]
             cell.setupCellUI()
-            cell.setScore(event.result)
-            cell.setDate(event.date)
+            cell.setScore(event.result ?? "")
+            cell.setDate(event.date ?? "")
             cell.setTime(event.time)
             cell.setNames(homeTeam: event.homeTeamName, awayTeam: event.awayTeamName)
-            cell.setImages(league: URL(string: event.leagueLogoURLString),
-                           homeTeam: URL(string: event.homeTeamLogoURLString),
-                           awayTeam: URL(string: event.awayTeamLogoURLString))
+            cell.setImages(league: URL(string: event.leagueLogoURLString ?? ""),
+                           homeTeam: URL(string: event.homeTeamLogoURLString ?? ""),
+                           awayTeam: URL(string: event.awayTeamLogoURLString ?? ""))
         default: return
         }
     }
     
     func configTeamCell(_ cell: CollectionViewCell, atIndex index: Int) {
         let team = teams[index]
-        cell.team_image.setImage(withURL: URL(string: team.logoURLString))
+        cell.team_image.setImage(withURL: URL(string: team.logoURLString ?? ""))
         cell.team_label.text = team.name
     }
     
@@ -91,10 +102,20 @@ class LeagueDetailsViewModel {
         }
     }
     
+    
+    // MARK: - Upcoming Events
+    private func getEndPointForUpcomintEvents() -> ASEndPoint {
+        let (currentDate, nextYearDate) = getData(withNextYear: true)
+        switch sportType {
+        case .football: return Football.fixtures(from: currentDate, to: nextYearDate)
+        case .basketball: return Basketball.events(from: currentDate, to: nextYearDate)
+        case .cricket: return Cricket.events(from: currentDate, to: nextYearDate)
+        }
+    }
+    
     func fetchUpcomingEvents() {
         showLoadingIndicator?(true)
-        let (currentDate, nextYearDate) = getData(withNextYear: true)
-        ASNetworkService.shared.fetch([Event].self, endpoint: Football.fixtures(from: currentDate, to: nextYearDate)) { [weak self] result in
+        ASNetworkService.shared.fetch([Event].self, endpoint: getEndPointForUpcomintEvents()) { [weak self] result in
             DispatchQueue.main.async {
                 self?.showLoadingIndicator?(false)
             }
@@ -111,10 +132,20 @@ class LeagueDetailsViewModel {
         }
     }
     
+    
+    // MARK: - Latest Events
+    private func getEndPointForLatestEvents() -> ASEndPoint {
+        let (currentDate, lastYear) = getData(withNextYear: false)
+        switch sportType {
+        case .football: return Football.fixtures(from: lastYear, to: currentDate)
+        case .basketball: return Basketball.events(from: lastYear, to: currentDate)
+        case .cricket: return Cricket.events(from: lastYear, to: currentDate)
+        }
+    }
+    
     func fetchLatestEvents() {
         showLoadingIndicator?(true)
-        let (currentDate, lastYear) = getData(withNextYear: false)
-        ASNetworkService.shared.fetch([Event].self, endpoint: Football.fixtures(from: lastYear, to: currentDate)) { [weak self] result in
+        ASNetworkService.shared.fetch([Event].self, endpoint: getEndPointForLatestEvents()) { [weak self] result in
             DispatchQueue.main.async {
                 self?.showLoadingIndicator?(false)
             }
@@ -131,9 +162,19 @@ class LeagueDetailsViewModel {
         }
     }
     
+    
+    // MARK: - League Teams
+    private func getEndPointForLeagueTeams(leagueID: Int) -> ASEndPoint {
+        switch sportType {
+        case .football: return Football.teams(leagueID: leagueID)
+        case .basketball: return Basketball.teams(leagueID: leagueID)
+        case .cricket: return Cricket.teams(leagueID: leagueID)
+        }
+    }
+    
     func fetchLeagueTeams() {
         showLoadingIndicator?(true)
-        ASNetworkService.shared.fetch([Team].self, endpoint: Football.teams(leagueID: 152)) { [weak self] result in
+        ASNetworkService.shared.fetch([Team].self, endpoint: getEndPointForLeagueTeams(leagueID: 152)) { [weak self] result in
             DispatchQueue.main.async {
                 self?.showLoadingIndicator?(false)
             }
