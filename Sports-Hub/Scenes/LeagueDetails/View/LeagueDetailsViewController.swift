@@ -142,6 +142,13 @@ class LeagueDetailsViewController: UIViewController {
         viewModel.errorOccurred = { errorMessage in
             print(errorMessage)
         }
+        
+        viewModel.didSelecteTeam = { [weak self] teamID, sportType in
+            let teamVC = TeamViewController()
+            teamVC.setTeamID(teamID)
+            teamVC.setSportType(sportType)
+            self?.navigationController?.pushViewController(teamVC, animated: true)
+        }
     }
 }
 
@@ -176,7 +183,6 @@ extension LeagueDetailsViewController: UICollectionViewDelegate, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard indexPath.section == 2 else { return }
-        self.navigationController?.pushViewController(TeamViewController(), animated: true)
+        viewModel.didSelectItem(at: indexPath.item, section: indexPath.section)
     }
 }
