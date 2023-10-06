@@ -98,33 +98,23 @@ class LeagueDetailsViewModel {
         didSelecteTeam?(team.id, sportType)
     }
     
-    
-    private func getData(withNextYear returnNextYear: Bool) -> (String, String) {
+    private func getDateString(byAddingDays days: Int = 1) -> String {
+        // API Error: The difference between to and from cannot be greater than 15 days if there is no other parameter
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-        let currentDataString = formatter.string(from: Date())
-        //let nextYearDate = Calendar.current.date(byAdding: .year, value: 1, to: Date())! // API Error: The difference between to and from cannot be greater than 15 days if there is no other parameter
-        let nextYearDate = Calendar.current.date(byAdding: .day, value: 15, to: Date())!
-        let nextYearString = formatter.string(from: nextYearDate)
-        
-        let lastYearData = Calendar.current.date(byAdding: .day, value: -15, to: Date())!
-        let lastYearString = formatter.string(from: lastYearData)
-        
-        if returnNextYear {
-            return (currentDataString, nextYearString)
-        } else {
-            return (currentDataString, lastYearString)
-        }
+        let date = Calendar.current.date(byAdding: .day, value: days, to: Date())!
+        return formatter.string(from: date)
     }
     
     
     // MARK: - Upcoming Events
     private func getEndPointForUpcomintEvents() -> ASEndPoint {
-        let (currentDate, nextYearDate) = getData(withNextYear: true)
+        let currentDate = getDateString()
+        let nextDate = getDateString(byAddingDays: 15)
         switch sportType {
-        case .football: return Football.fixtures(from: currentDate, to: nextYearDate, leagueID: leagueID)
-        case .basketball: return Basketball.events(from: currentDate, to: nextYearDate, leagueID: leagueID)
-        case .cricket: return Cricket.events(from: currentDate, to: nextYearDate, leagueID: leagueID)
+        case .football: return Football.fixtures(from: currentDate, to: nextDate, leagueID: leagueID)
+        case .basketball: return Basketball.events(from: currentDate, to: nextDate, leagueID: leagueID)
+        case .cricket: return Cricket.events(from: currentDate, to: nextDate, leagueID: leagueID)
         }
     }
     
@@ -150,11 +140,12 @@ class LeagueDetailsViewModel {
     
     // MARK: - Latest Events
     private func getEndPointForLatestEvents() -> ASEndPoint {
-        let (currentDate, lastYear) = getData(withNextYear: false)
+        let currentDate = getDateString()
+        let lastDate = getDateString(byAddingDays: -15)
         switch sportType {
-        case .football: return Football.fixtures(from: lastYear, to: currentDate, leagueID: leagueID)
-        case .basketball: return Basketball.events(from: lastYear, to: currentDate, leagueID: leagueID)
-        case .cricket: return Cricket.events(from: lastYear, to: currentDate, leagueID: leagueID)
+        case .football: return Football.fixtures(from: lastDate, to: currentDate, leagueID: leagueID)
+        case .basketball: return Basketball.events(from: lastDate, to: currentDate, leagueID: leagueID)
+        case .cricket: return Cricket.events(from: lastDate, to: currentDate, leagueID: leagueID)
         }
     }
     
