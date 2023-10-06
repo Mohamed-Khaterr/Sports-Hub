@@ -73,6 +73,20 @@ class FavouritesTableVC: UITableViewController, reload_protocol {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
+        let vc = LeagueDetailsViewController()
+        vc.viewModel.setLeague(id: favouritesViewModel.getID(index: indexPath.row))
+        switch favouritesViewModel.getSportType(index: indexPath.row) {
+        case "Football": vc.viewModel.setSportType(.football)
+        case "Basketball": vc.viewModel.setSportType(.basketball)
+        case "Cricket": vc.viewModel.setSportType(.cricket)
+        default: return
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
 
     /*
     // Override to support conditional editing of the table view.
