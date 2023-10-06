@@ -29,7 +29,8 @@ class TabBarController: UITabBarController {
     
     private func setupTabs() {
         let sportsVC = SportsViewController()
-        let fav = TableView_XIB()
+        //let fav = TableView_XIB()
+        let fav = FavouritesTableVC()
         
         let vcs: [UIViewController] = [
             createNavigationController(withRoot: sportsVC, barTitle: "Sports", barImage: UIImage(named: "sports")),
