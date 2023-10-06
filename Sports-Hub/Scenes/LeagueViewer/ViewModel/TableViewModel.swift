@@ -32,6 +32,9 @@ class LeaguesTableViewModel {
     func getID (index : Int) -> Int{
         return leagues[index].id
     }
+    func getLeague (index : Int) -> League {
+        return leagues[index]
+    }
     
     
     func getLogo (index : Int) -> String {

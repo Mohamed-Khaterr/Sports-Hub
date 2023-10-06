@@ -1,38 +1,34 @@
 //
-//  TableView_XIB.swift
-//  movieApp
+//  FavouritesTableVC.swift
+//  Sports-Hub
 //
-//  Created by Admin on 30/09/2023.
+//  Created by Admin on 06/10/2023.
 //
 
 import UIKit
 
-class TableView_XIB: UITableViewController, reload_protocol {
-    
-    private var SportType : String = "Football"
-    
-    private var tableModel : LeaguesTableViewModel = LeaguesTableViewModel()
-    
-    var sportType : Int = 0
-    
-    func reload_data () {
+class FavouritesTableVC: UITableViewController, reload_protocol {
+    func reload_data() {
         tableView.reloadData()
     }
     
-    func setSportType(_ type: SportType) {
-        self.SportType = type.rawValue
+    func reset_view () {
+        favouritesViewModel.reloadData()
     }
+    
+    var favouritesViewModel = FavouritesViewModel()
         
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "test")
         
-        tableView.backgroundColor = .cyan
+        tableView.backgroundColor = .red
         
-        tableModel.Table = self
-        tableModel.setSportType(self.SportType)
-        tableModel.fetchLeagues()
+        
+        favouritesViewModel.Table = self
+        
+        reset_view()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -42,52 +38,41 @@ class TableView_XIB: UITableViewController, reload_protocol {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        tableModel.fetchLeagues()
+        reset_view()
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 1;
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return tableModel.getCount()
+        return favouritesViewModel.getCount()
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "test") as! TableViewCell;
+
         
         
-        cell.leagueData.id = tableModel.getID(index: indexPath.item)
-        cell.leagueData.sportType = SportType;
+        cell.leagueData.id = favouritesViewModel.getID(index: indexPath.item)
+        cell.leagueData.sportType = favouritesViewModel.getSportType(index: indexPath.item);
         
-        cell.league_image.setImage(withURL: URL(string: tableModel.getLogo(index: indexPath.item)))
-        cell.LeagueName.text = tableModel.getName(index: indexPath.item)
+        cell.league_image.setImage(withURL: URL(string: favouritesViewModel.getLogo(index: indexPath.item)))
+        cell.LeagueName.text = favouritesViewModel.getName(index: indexPath.item)
+        
+        cell.delegate = self
         
         cell.set_favourite_image()
-
+        
         return cell
     }
     
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        
-        let vc = LeagueDetailsViewController()
-        vc.viewModel.setLeague(id: tableModel.getID(index: indexPath.row))
-        switch self.SportType {
-        case "Football": vc.viewModel.setSportType(.football)
-        case "Basketball": vc.viewModel.setSportType(.basketball)
-        case "Cricket": vc.viewModel.setSportType(.cricket)
-        default: return
-        }
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
 
     /*
     // Override to support conditional editing of the table view.
