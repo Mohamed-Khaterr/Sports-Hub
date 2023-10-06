@@ -13,7 +13,10 @@ class TableViewCell: UITableViewCell {
 
 
     @IBOutlet weak var youtube_link: UIImageView!
-
+    
+    
+    @IBOutlet weak var LeagueName: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
 

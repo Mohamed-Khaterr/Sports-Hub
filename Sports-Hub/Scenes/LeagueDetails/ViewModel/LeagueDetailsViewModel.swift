@@ -27,6 +27,7 @@ class LeagueDetailsViewModel {
     var showLoadingIndicator: ((Bool) -> Void)?
     var render: (() -> Void)?
     var errorOccurred: ((String) -> Void)?
+    var didSelecteTeam: ((Int, SportType) -> Void)?
     
     var noOfSections: Int {
         return 3
@@ -84,6 +85,13 @@ class LeagueDetailsViewModel {
         cell.team_label.text = team.name
     }
     
+    func didSelectItem(at index: Int, section: Int) {
+        guard section == 2 else { return }
+        let team = teams[index]
+        didSelecteTeam?(team.id, sportType)
+    }
+    
+    
     private func getData(withNextYear returnNextYear: Bool) -> (String, String) {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
@@ -107,9 +115,9 @@ class LeagueDetailsViewModel {
     private func getEndPointForUpcomintEvents() -> ASEndPoint {
         let (currentDate, nextYearDate) = getData(withNextYear: true)
         switch sportType {
-        case .football: return Football.fixtures(from: currentDate, to: nextYearDate)
-        case .basketball: return Basketball.events(from: currentDate, to: nextYearDate)
-        case .cricket: return Cricket.events(from: currentDate, to: nextYearDate)
+        case .football: return Football.fixtures(from: currentDate, to: nextYearDate, leagueID: leagueID)
+        case .basketball: return Basketball.events(from: currentDate, to: nextYearDate, leagueID: leagueID)
+        case .cricket: return Cricket.events(from: currentDate, to: nextYearDate, leagueID: leagueID)
         }
     }
     
@@ -137,9 +145,9 @@ class LeagueDetailsViewModel {
     private func getEndPointForLatestEvents() -> ASEndPoint {
         let (currentDate, lastYear) = getData(withNextYear: false)
         switch sportType {
-        case .football: return Football.fixtures(from: lastYear, to: currentDate)
-        case .basketball: return Basketball.events(from: lastYear, to: currentDate)
-        case .cricket: return Cricket.events(from: lastYear, to: currentDate)
+        case .football: return Football.fixtures(from: lastYear, to: currentDate, leagueID: leagueID)
+        case .basketball: return Basketball.events(from: lastYear, to: currentDate, leagueID: leagueID)
+        case .cricket: return Cricket.events(from: lastYear, to: currentDate, leagueID: leagueID)
         }
     }
     
@@ -174,7 +182,7 @@ class LeagueDetailsViewModel {
     
     func fetchLeagueTeams() {
         showLoadingIndicator?(true)
-        ASNetworkService.shared.fetch([Team].self, endpoint: getEndPointForLeagueTeams(leagueID: 152)) { [weak self] result in
+        ASNetworkService.shared.fetch([Team].self, endpoint: getEndPointForLeagueTeams(leagueID: self.leagueID)) { [weak self] result in
             DispatchQueue.main.async {
                 self?.showLoadingIndicator?(false)
             }

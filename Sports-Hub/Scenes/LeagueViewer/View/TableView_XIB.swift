@@ -7,7 +7,21 @@
 
 import UIKit
 
-class TableView_XIB: UITableViewController {
+class TableView_XIB: UITableViewController, reload_protocol {
+    
+    private var SportType : String = "Football"
+    
+    private var tableModel : LeaguesTableViewModel = LeaguesTableViewModel()
+    
+    var sportType : Int = 0
+    
+    func reload_data () {
+        tableView.reloadData()
+    }
+    
+    func setSportType(_ type: SportType) {
+        self.SportType = type.rawValue
+    }
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,6 +29,10 @@ class TableView_XIB: UITableViewController {
         tableView.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "test")
         
         tableView.backgroundColor = .cyan
+        
+        tableModel.Table = self
+        tableModel.setSportType(self.SportType)
+        tableModel.fetchLeagues()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -27,12 +45,12 @@ class TableView_XIB: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 5
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 5
+        return tableModel.getCount()
     }
 
     
@@ -41,7 +59,9 @@ class TableView_XIB: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "test") as! TableViewCell;
         
         
-        cell.league_image.image = UIImage(data: (UIImage(named: "premiere_league_logo")?.pngData())!)
+        //cell.league_image.image = UIImage(data: (UIImage(named: "premiere_league_logo")?.pngData())!)
+        cell.league_image.setImage(withURL: URL(string: tableModel.getLogo(index: indexPath.item)))
+        cell.LeagueName.text = tableModel.getName(index: indexPath.item)
         cell.youtube_link.image = UIImage(named: "youtube_logo")
 
 
@@ -50,7 +70,17 @@ class TableView_XIB: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.navigationController?.pushViewController(LeagueDetailsViewController(), animated: true)
+        
+        
+        let vc = LeagueDetailsViewController()
+        vc.viewModel.setLeague(id: tableModel.getID(index: indexPath.row))
+        switch self.SportType {
+        case "Football": vc.viewModel.setSportType(.football)
+        case "Basketball": vc.viewModel.setSportType(.basketball)
+        case "Cricket": vc.viewModel.setSportType(.cricket)
+        default: return
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
     /*

@@ -88,7 +88,9 @@ class SportsViewController: UIViewController {
     
     private func bindViewModel() {
         viewModel.didSelectSport = { [weak self] sportType in
-            self?.navigationController?.pushViewController(TableView_XIB(), animated: true)
+            let leagueViewer = TableView_XIB()
+            leagueViewer.setSportType(sportType)
+            self?.navigationController?.pushViewController(leagueViewer, animated: true)
 //            let leagueDetailsVC = LeagueDetailsViewController()
 //            leagueDetailsVC.viewModel.setSportType(sportType)
 //            self?.navigationController?.pushViewController(leagueDetailsVC, animated: true)
