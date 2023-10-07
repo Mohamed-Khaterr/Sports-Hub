@@ -16,6 +16,20 @@ class LeagueDetailsViewModel {
     private var latestEvents: [Event] = []
     private var teams: [Team] = []
     
+    private var dataDownloaded: [Int: Bool] = [:] {
+        didSet {
+            if dataDownloaded.allSatisfy({ $0.value }) {
+                // All True
+                DispatchQueue.main.async {
+                    self.showLoadingIndicator?(false)
+                }
+            } else {
+                // Contains false
+                self.showLoadingIndicator?(true)
+            }
+        }
+    }
+    
     func setLeague(id: Int) {
         leagueID = id
     }
@@ -119,12 +133,9 @@ class LeagueDetailsViewModel {
     }
     
     func fetchUpcomingEvents() {
-        showLoadingIndicator?(true)
+        dataDownloaded[0] = false
         ASNetworkService.shared.fetch([Event].self, endpoint: getEndPointForUpcomintEvents()) { [weak self] result in
-            DispatchQueue.main.async {
-                self?.showLoadingIndicator?(false)
-            }
-            
+            self?.dataDownloaded[0] = true
             switch result {
             case .success(let upcomingEvents):
                 self?.upcomingEvents = upcomingEvents
@@ -150,11 +161,9 @@ class LeagueDetailsViewModel {
     }
     
     func fetchLatestEvents() {
-        showLoadingIndicator?(true)
+        dataDownloaded[1] = false
         ASNetworkService.shared.fetch([Event].self, endpoint: getEndPointForLatestEvents()) { [weak self] result in
-            DispatchQueue.main.async {
-                self?.showLoadingIndicator?(false)
-            }
+            self?.dataDownloaded[1] = true
             
             switch result {
             case .success(let latestEvents):
@@ -179,11 +188,10 @@ class LeagueDetailsViewModel {
     }
     
     func fetchLeagueTeams() {
-        showLoadingIndicator?(true)
+        dataDownloaded[2] = false
         ASNetworkService.shared.fetch([Team].self, endpoint: getEndPointForLeagueTeams(leagueID: self.leagueID)) { [weak self] result in
-            DispatchQueue.main.async {
-                self?.showLoadingIndicator?(false)
-            }
+            self?.dataDownloaded[2] = true
+            
             switch result {
             case .success(let teams):
                 self?.teams = teams

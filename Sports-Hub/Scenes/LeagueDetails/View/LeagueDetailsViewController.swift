@@ -11,6 +11,7 @@ class LeagueDetailsViewController: UIViewController {
     
     // MARK: IBOutlets
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
     // MARK: - Properties
     let viewModel = LeagueDetailsViewModel()
@@ -135,8 +136,11 @@ class LeagueDetailsViewController: UIViewController {
         }
         
         viewModel.showLoadingIndicator = { [weak self] isLoading in
-            //print("Loaing: \(isLoading)")
-            // TODO: Create Custom Loading Alert
+            if isLoading {
+                self?.loadingIndicator.startAnimating()
+            } else {
+                self?.loadingIndicator.stopAnimating()
+            }
         }
         
         viewModel.errorOccurred = { [weak self] errorMessage in
