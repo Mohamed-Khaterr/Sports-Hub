@@ -79,7 +79,8 @@ class LeagueDetailsViewModel {
         case 0:
             let event = upcomingEvents[index]
             cell.setupCellUI()
-            cell.hideScore()
+//            cell.hideScore()
+            cell.setScore(event.result ?? event.status)
             cell.setDate(event.date ?? "")
             cell.setTime(event.time)
             cell.setNames(homeTeam: event.homeTeamName, awayTeam: event.awayTeamName)
@@ -89,7 +90,7 @@ class LeagueDetailsViewModel {
         case 1:
             let event = latestEvents[index]
             cell.setupCellUI()
-            cell.setScore(event.result ?? "")
+            cell.setScore(event.result ?? event.status)
             cell.setDate(event.date ?? "")
             cell.setTime(event.time)
             cell.setNames(homeTeam: event.homeTeamName, awayTeam: event.awayTeamName)
@@ -112,23 +113,33 @@ class LeagueDetailsViewModel {
         didSelecteTeam?(team.id, sportType)
     }
     
-    private func getDateString(byAddingDays days: Int = 1) -> String {
+    private func getDateStringInYear(byAddingYear year: Int = 0) -> String {
         // API Error: The difference between to and from cannot be greater than 15 days if there is no other parameter
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-        let date = Calendar.current.date(byAdding: .day, value: days, to: Date())!
+        let lastDay = Calendar.current.date(byAdding: .day, value: -1, to: Date.now)!
+        let date = Calendar.current.date(byAdding: .year, value: year, to: lastDay)!
+        return formatter.string(from: date)
+    }
+    
+    private func getDateStringInDay(byAddingDay day: Int = 0) -> String {
+        // API Error: The difference between to and from cannot be greater than 15 days if there is no other parameter
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let date = Calendar.current.date(byAdding: .day, value: day, to: Date.now)!
         return formatter.string(from: date)
     }
     
     
     // MARK: - Upcoming Events
     private func getEndPointForUpcomintEvents() -> ASEndPoint {
-        let currentDate = getDateString()
-        let nextDate = getDateString(byAddingDays: 15)
+        let currentDate = getDateStringInYear()
+        let nextYear = getDateStringInYear(byAddingYear: 1)
+        let nextDays = getDateStringInDay(byAddingDay: 15)
         switch sportType {
-        case .football: return Football.fixtures(from: currentDate, to: nextDate, leagueID: leagueID)
-        case .basketball: return Basketball.events(from: currentDate, to: nextDate, leagueID: leagueID)
-        case .cricket: return Cricket.events(from: currentDate, to: nextDate, leagueID: leagueID)
+        case .football: return Football.fixtures(from: currentDate, to: nextDays, leagueID: leagueID)
+        case .basketball: return Basketball.events(from: currentDate, to: nextDays, leagueID: leagueID)
+        case .cricket: return Cricket.events(from: currentDate, to: nextDays, leagueID: leagueID)
         }
     }
     
@@ -151,12 +162,13 @@ class LeagueDetailsViewModel {
     
     // MARK: - Latest Events
     private func getEndPointForLatestEvents() -> ASEndPoint {
-        let currentDate = getDateString()
-        let lastDate = getDateString(byAddingDays: -15)
+        let currentDate = getDateStringInYear()
+        let lastYear = getDateStringInYear(byAddingYear: -1)
+        let lastDays = getDateStringInDay(byAddingDay: -15)
         switch sportType {
-        case .football: return Football.fixtures(from: lastDate, to: currentDate, leagueID: leagueID)
-        case .basketball: return Basketball.events(from: lastDate, to: currentDate, leagueID: leagueID)
-        case .cricket: return Cricket.events(from: lastDate, to: currentDate, leagueID: leagueID)
+        case .football: return Football.fixtures(from: lastDays, to: currentDate, leagueID: leagueID)
+        case .basketball: return Basketball.events(from: lastDays, to: currentDate, leagueID: leagueID)
+        case .cricket: return Cricket.events(from: lastDays, to: currentDate, leagueID: leagueID)
         }
     }
     
