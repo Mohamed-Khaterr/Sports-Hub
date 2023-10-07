@@ -139,8 +139,9 @@ class LeagueDetailsViewController: UIViewController {
             // TODO: Create Custom Loading Alert
         }
         
-        viewModel.errorOccurred = { errorMessage in
-            print(errorMessage)
+        viewModel.errorOccurred = { [weak self] errorMessage in
+            guard let self = self else { return }
+            Alert.show(on: self, title: "Error", message: errorMessage)
         }
         
         viewModel.didSelecteTeam = { [weak self] teamID, sportType in
