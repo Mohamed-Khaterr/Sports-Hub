@@ -132,20 +132,13 @@ class LeagueDetailsViewModel {
     
     
     // MARK: - Upcoming Events
-    private func getEndPointForUpcomintEvents() -> ASEndPoint {
+    func fetchUpcomingEvents() {
+        dataDownloaded[0] = false
         let currentDate = getDateStringInYear()
         let nextYear = getDateStringInYear(byAddingYear: 1)
         let nextDays = getDateStringInDay(byAddingDay: 15)
-        switch sportType {
-        case .football: return Football.fixtures(from: currentDate, to: nextDays, leagueID: leagueID)
-        case .basketball: return Basketball.events(from: currentDate, to: nextDays, leagueID: leagueID)
-        case .cricket: return Cricket.events(from: currentDate, to: nextDays, leagueID: leagueID)
-        }
-    }
-    
-    func fetchUpcomingEvents() {
-        dataDownloaded[0] = false
-        ASNetworkService.shared.fetch([Event].self, endpoint: getEndPointForUpcomintEvents()) { [weak self] result in
+        
+        ASNetworkService.shared.fetch([Event].self, sport: sportType, endpoint: .events(from: currentDate, to: nextDays, leagueID: leagueID)) { [weak self] result in
             self?.dataDownloaded[0] = true
             switch result {
             case .success(let upcomingEvents):
@@ -161,20 +154,12 @@ class LeagueDetailsViewModel {
     
     
     // MARK: - Latest Events
-    private func getEndPointForLatestEvents() -> ASEndPoint {
+    func fetchLatestEvents() {
+        dataDownloaded[1] = false
         let currentDate = getDateStringInYear()
         let lastYear = getDateStringInYear(byAddingYear: -1)
         let lastDays = getDateStringInDay(byAddingDay: -15)
-        switch sportType {
-        case .football: return Football.fixtures(from: lastDays, to: currentDate, leagueID: leagueID)
-        case .basketball: return Basketball.events(from: lastDays, to: currentDate, leagueID: leagueID)
-        case .cricket: return Cricket.events(from: lastDays, to: currentDate, leagueID: leagueID)
-        }
-    }
-    
-    func fetchLatestEvents() {
-        dataDownloaded[1] = false
-        ASNetworkService.shared.fetch([Event].self, endpoint: getEndPointForLatestEvents()) { [weak self] result in
+        ASNetworkService.shared.fetch([Event].self, sport: sportType, endpoint: .events(from: lastDays, to: currentDate, leagueID: leagueID)) { [weak self] result in
             self?.dataDownloaded[1] = true
             
             switch result {
@@ -191,17 +176,9 @@ class LeagueDetailsViewModel {
     
     
     // MARK: - League Teams
-    private func getEndPointForLeagueTeams(leagueID: Int) -> ASEndPoint {
-        switch sportType {
-        case .football: return Football.teams(leagueID: leagueID)
-        case .basketball: return Basketball.teams(leagueID: leagueID)
-        case .cricket: return Cricket.teams(leagueID: leagueID)
-        }
-    }
-    
     func fetchLeagueTeams() {
         dataDownloaded[2] = false
-        ASNetworkService.shared.fetch([Team].self, endpoint: getEndPointForLeagueTeams(leagueID: self.leagueID)) { [weak self] result in
+        ASNetworkService.shared.fetch([Team].self, sport: sportType, endpoint: .teams(leagueID: leagueID)) { [weak self] result in
             self?.dataDownloaded[2] = true
             
             switch result {
