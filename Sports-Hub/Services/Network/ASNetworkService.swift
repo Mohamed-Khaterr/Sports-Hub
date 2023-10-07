@@ -58,7 +58,11 @@ struct ASNetworkService: ASNetworkProvider {
     func fetch<T: Decodable>(_ type: T.Type, sport: SportType, endpoint: ASEndpoint, compeletionHandler: @escaping (Result<T, NetworkError>) -> Void) {
         let urlString = getURLString(sportType: sport)
         
-        AF.request(urlString, method: .get, parameters: endpoint.params).response { response in
+        var params = endpoint.params
+        params["met"] = endpoint.met
+        params["APIkey"] = Hidden.apiKey
+        
+        AF.request(urlString, method: .get, parameters: params).response { response in
             switch response.result {
             case .success(let data):
                 guard let data = data else {
@@ -67,8 +71,12 @@ struct ASNetworkService: ASNetworkProvider {
                 }
                 
                 do {
-                    let result = try self.parseJSONASResponse(type, from: data)
-                    compeletionHandler(.success(result))
+                    if let result = try self.parseJSONASResponse(type, from: data) {
+                        compeletionHandler(.success(result))
+                    } else {
+                        compeletionHandler(.failure(.noData))
+                    }
+                    
                 } catch {
                     compeletionHandler(.failure(error as! NetworkError))
                 }
@@ -92,25 +100,22 @@ struct ASNetworkService: ASNetworkProvider {
         return urlString
     }
     
-    private func parseJSONASResponse<T: Decodable>(_ type: T.Type, from data: Data) throws -> T {
+    private func parseJSONASResponse<T: Decodable>(_ type: T.Type, from data: Data) throws -> T? {
         do {
             let decodedData = try JSONDecoder().decode(ASDataResponse<T>.self, from: data)
-            if let result = decodedData.result {
-                return result
-            } else {
-                throw NetworkError.noData
-            }
+            
+            return decodedData.result
 
         } catch {
             do {
                 // AllSportsAPI response with error
                 let decodedError = try JSONDecoder().decode(ASErrorResponse.self, from: data)
                 let errorMessage = decodedError.result.compactMap({ $0.message }).joined(separator: ", ")
-                throw NetworkError.api(errorMessage)
+                throw NetworkError.api(errorMessage) as Error
             } catch {
                 // Parsing JSON error
                 debugPrint("Developer Error :: Data Model is not compatible with API Response. Please Check your URL and Data Model")
-                throw NetworkError.JSONDecdoing(error.localizedDescription)
+                throw NetworkError.JSONDecdoing(error.localizedDescription) as Error
             }
         }
     }
