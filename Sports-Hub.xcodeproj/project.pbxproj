@@ -60,7 +60,7 @@
 		84862E312AD08FC700E605A5 /* FavouritesTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84862E2F2AD08FC700E605A5 /* FavouritesTableVC.swift */; };
 		84862E322AD08FC700E605A5 /* FavouritesTableVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84862E302AD08FC700E605A5 /* FavouritesTableVC.xib */; };
 		84862E362AD0975100E605A5 /* FavouritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84862E352AD0975100E605A5 /* FavouritesViewModel.swift */; };
-		84862E3F2AD0C8D000E605A5 /* Hidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84862E3E2AD0C8D000E605A5 /* Hidden.swift */; };
+		84862E422AD164B700E605A5 /* Hidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84862E412AD164B700E605A5 /* Hidden.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -118,7 +118,7 @@
 		84862E2F2AD08FC700E605A5 /* FavouritesTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesTableVC.swift; sourceTree = "<group>"; };
 		84862E302AD08FC700E605A5 /* FavouritesTableVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavouritesTableVC.xib; sourceTree = "<group>"; };
 		84862E352AD0975100E605A5 /* FavouritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewModel.swift; sourceTree = "<group>"; };
-		84862E3E2AD0C8D000E605A5 /* Hidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hidden.swift; sourceTree = "<group>"; };
+		84862E412AD164B700E605A5 /* Hidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hidden.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,7 +184,7 @@
 		014FC1E12AC3A48C0001BBAB /* Sports-Hub */ = {
 			isa = PBXGroup;
 			children = (
-				84862E3D2AD0C8C000E605A5 /* Hidden */,
+				84862E402AD1649B00E605A5 /* Hidden */,
 				014FC1F82AC3A63E0001BBAB /* Config */,
 				014FC1F72AC3A6350001BBAB /* Core */,
 				014FC1F92AC3A6680001BBAB /* Resources */,
@@ -427,10 +427,10 @@
 			path = Endpoint;
 			sourceTree = "<group>";
 		};
-		84862E3D2AD0C8C000E605A5 /* Hidden */ = {
+		84862E402AD1649B00E605A5 /* Hidden */ = {
 			isa = PBXGroup;
 			children = (
-				84862E3E2AD0C8D000E605A5 /* Hidden.swift */,
+				84862E412AD164B700E605A5 /* Hidden.swift */,
 			);
 			path = Hidden;
 			sourceTree = "<group>";
@@ -539,7 +539,7 @@
 				012B70692AD0B13C00627A6F /* Constant.swift in Sources */,
 				01CA52982ACA787D00EEC4BF /* ASNetworkProvider.swift in Sources */,
 				01B3F6B82ACF5D4D00490D64 /* Cricket.swift in Sources */,
-				84862E3F2AD0C8D000E605A5 /* Hidden.swift in Sources */,
+				84862E422AD164B700E605A5 /* Hidden.swift in Sources */,
 				01CA528F2ACA753800EEC4BF /* ASEndPoint.swift in Sources */,
 				01866DD72AD03E62004386B0 /* TableViewModel.swift in Sources */,
 				01866DC32AD03D87004386B0 /* TeamViewModel.swift in Sources */,
