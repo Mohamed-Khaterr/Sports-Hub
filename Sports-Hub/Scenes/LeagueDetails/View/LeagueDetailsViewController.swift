@@ -33,9 +33,9 @@ class LeagueDetailsViewController: UIViewController {
     // MARK: - NavigationBar
     private func setupNavigationBar() {
         title = "League Details"
-        let favBarButton = UIBarButtonItem(image: UIImage(systemName: favBarButtonImageName), style: .done, target: self, action: #selector(favoriteButtonPressed))
-        favBarButton.tintColor = .label
-        navigationItem.rightBarButtonItem = favBarButton
+//        let favBarButton = UIBarButtonItem(image: UIImage(systemName: favBarButtonImageName), style: .done, target: self, action: #selector(favoriteButtonPressed))
+//        favBarButton.tintColor = .label
+//        navigationItem.rightBarButtonItem = favBarButton
     }
     
     // MARK: - Favorite Button
