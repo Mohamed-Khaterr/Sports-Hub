@@ -15,6 +15,15 @@ enum ASEndpoint {
     case teams(leagueID: Int)
     case team(id: Int)
     
+    var met: String {
+        switch self {
+        case .countries: return "Countries"
+        case .leagues: return "Leagues"
+        case .events(_, _, _): return "Fixtures"
+        case .teams(_), .team(_): return "Teams"
+        }
+    }
+    
     var params: [String : Any] {
         switch self {
         case .events(let from, let to, let leagueID): return ["from": from, "to": to, "leagueId": leagueID]
