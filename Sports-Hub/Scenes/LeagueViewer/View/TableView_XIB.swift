@@ -64,6 +64,8 @@ class TableView_XIB: UITableViewController, reload_protocol {
         
         cell.leagueData.id = tableModel.getID(index: indexPath.item)
         cell.leagueData.sportType = SportType;
+        cell.leagueData.leagueName = tableModel.getName(index: indexPath.item);
+        cell.leagueData.leagueLogo = tableModel.getLogo(index: indexPath.item);
         
         cell.league_image.setImage(withURL: URL(string: tableModel.getLogo(index: indexPath.item)))
         cell.LeagueName.text = tableModel.getName(index: indexPath.item)

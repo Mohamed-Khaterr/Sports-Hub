@@ -23,27 +23,23 @@ class CoreDataClassManager: NSObject {
         
         league.setValue(item.id, forKey: "id");
         league.setValue(item.sportType, forKey: "sportType");
+        league.setValue(item.leagueName, forKey: "leagueName");
+        league.setValue(item.leagueLogo, forKey: "leagueLogo");
 
         
         do {
             
             try managedContext.save();
-            //print("yk insert")
+            
         } catch let error as NSError {
             print("saving error")
-            //print(error);
+            
         }
         
     }
     
     func fetch_from_db() -> Array<FavouriteLeague> {
         
-        /*
-         class Item: Codable {
-             var title = ""
-             var done = false
-         }
-         */
         
         var myItems : Array<FavouriteLeague> = []
         
@@ -61,10 +57,14 @@ class CoreDataClassManager: NSObject {
             for l in savedItems {
                 var id : Int = l.value(forKey: "id") as! Int;
                 var sportType : String = l.value(forKey: "sportType") as! String;
+                var leagueName : String = l.value(forKey: "leagueName") as! String;
+                var leagueLogo : String = l.value(forKey: "leagueLogo") as! String;
 
                 var newObj : FavouriteLeague = FavouriteLeague();
                 newObj.id = id;
                 newObj.sportType = sportType;
+                newObj.leagueName = leagueName;
+                newObj.leagueLogo = leagueLogo;
 
                 myItems.append(newObj);
             }

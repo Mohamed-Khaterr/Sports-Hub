@@ -10,4 +10,6 @@ import Foundation
 class FavouriteLeague : Codable {
     var id : Int = 0;
     var sportType : String = "";
+    var leagueName : String = "";
+    var leagueLogo : String = "";
 }
