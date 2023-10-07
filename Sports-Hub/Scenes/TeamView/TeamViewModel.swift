@@ -38,10 +38,10 @@ class TeamViewModel {
     }
     
     func getPlayerName (index : Int) -> String {
-        team?.players?[index].name ?? "";
+        team?.players?[index].name ?? "Name Not Found";
     }
-    func getPlayerImage (index : Int) -> String {
-        team?.players?[index].imageURLString ?? "";
+    func getPlayerImage (index : Int) -> String? {
+        team?.players?[index].imageURLString;
     }
     
 
@@ -65,9 +65,10 @@ class TeamViewModel {
                 case .success(let team):
                     //print("trace : \(team[0].name)")
                     self?.team = team[0]
-                    self?.viewer?.reload_data()
+                    //self?.viewer?.reload_data()
                     DispatchQueue.main.async {
                         self?.render?()
+                        self?.viewer?.reload_data()
                     }
                 case .failure(let error):
                     self?.errorOccurred?(error.localizedDescription)
@@ -85,9 +86,10 @@ class TeamViewModel {
                 case .success(let team):
                     //print("trace : \(team[0].name)")
                     self?.team = team[0]
-                    self?.viewer?.reload_data()
+                    //self?.viewer?.reload_data()
                     DispatchQueue.main.async {
                         self?.render?()
+                        self?.viewer?.reload_data()
                     }
                 case .failure(let error):
                     self?.errorOccurred?(error.localizedDescription)
@@ -104,9 +106,10 @@ class TeamViewModel {
                 case .success(let team):
                     //print("trace : \(team[0].name)")
                     self?.team = team[0]
-                    self?.viewer?.reload_data()
+                    //self?.viewer?.reload_data()
                     DispatchQueue.main.async {
                         self?.render?()
+                        self?.viewer?.reload_data()
                     }
                 case .failure(let error):
                     self?.errorOccurred?(error.localizedDescription)
