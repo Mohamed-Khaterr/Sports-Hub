@@ -63,26 +63,32 @@ class LeagueDetailsViewController: UIViewController {
     }
     
     private func collectionViewLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
+        let layout = UICollectionViewCompositionalLayout { sectionIndex, env in
             switch sectionIndex {
-            case 0,1: return self.eventSectionLayout(isVertical: (sectionIndex == 1))
-            case 2: return self.teamSectionLayout()
-            default: return self.teamSectionLayout()
+            case 0:
+                let shrink = self.collectionView.numberOfItems(inSection: sectionIndex) == 0
+                return self.eventSectionLayout(withHorizontalScrolling: true, shrink: shrink)
+                
+            case 1:
+                return self.eventSectionLayout()
+                
+            default:
+                return  self.teamSectionLayout()
             }
         }
         return layout
     }
     
-    private func eventSectionLayout(isVertical: Bool) -> NSCollectionLayoutSection {
+    private func eventSectionLayout(withHorizontalScrolling isHorizontalyScrolling: Bool = false, shrink: Bool = false) -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(200))
         let group: NSCollectionLayoutGroup
-        if isVertical {
-            group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-        } else {
+        if isHorizontalyScrolling {
             group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        } else {
+            group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
         }
         group.contentInsets = .init(top: 8, leading: 8, bottom: 8, trailing: 8)
         
@@ -94,8 +100,8 @@ class LeagueDetailsViewController: UIViewController {
         
         let section = NSCollectionLayoutSection(group: group)
         section.boundarySupplementaryItems = [header]
-        if !isVertical {
-            section.orthogonalScrollingBehavior = .continuous
+        if isHorizontalyScrolling && !shrink {
+            section.orthogonalScrollingBehavior = .paging
         }
         
         return section
