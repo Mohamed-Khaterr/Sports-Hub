@@ -23,8 +23,6 @@ class FavouritesTableVC: UITableViewController, reload_protocol {
         
         tableView.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "test")
         
-        tableView.backgroundColor = .red
-        
         
         favouritesViewModel.Table = self
         
