@@ -27,8 +27,7 @@ class TableView_XIB: UITableViewController, reload_protocol {
         super.viewDidLoad()
         
         tableView.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "test")
-        
-        tableView.backgroundColor = .cyan
+
         
         tableModel.Table = self
         tableModel.setSportType(self.SportType)

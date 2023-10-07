@@ -51,7 +51,24 @@ class TeamViewController:
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Team_collection_cell", for: indexPath) as! TeamCollectionViewCell;
         
         cell.player_image.setImage(withURL: URL(string: teamModel.getPlayerImage(index: indexPath.item)))
-        cell.player_name.text = teamModel.getPlayerName(index: indexPath.item)
+        
+        var name = teamModel.getPlayerName(index: indexPath.item)
+        
+        var name2 = "";
+        
+        for c in name {
+            if c.isLetter {
+                name2.append(c);
+            }
+        }
+        if (name2 == "") {
+            name = "Not Found"
+        }
+        
+        print("name ->> (\(name))")
+        
+        cell.player_name.text = name
+        
         
         return cell;
         
@@ -62,16 +79,36 @@ class TeamViewController:
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //
+        
+//        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+//        backgroundImage.setImage(withURL: URL(string: "https://static9.depositphotos.com/1034300/1139/i/450/depositphotos_11398798-stock-photo-chalkboard-classroom-soccer-tactics-team.jpg"))
+//        backgroundImage.contentMode = UIView.ContentMode.scaleAspectFill
+//        self.view.insertSubview(backgroundImage, at: 0)
+        
         teamModel.fetchTeam()
         
         self.players_collection_view.delegate = self;
         self.players_collection_view.dataSource = self
+        self.players_collection_view.backgroundColor = UIColor.clear.withAlphaComponent(0)
+
         
-        //self.team_image.backgroundColor = .blue
-        self.stadium_image.backgroundColor = .cyan
+        self.stadium_image.setImage(withURL: URL(string: "https://www.pixelstalk.net/wp-content/uploads/2016/11/Awesome-Camp-Nou-Background.jpg"))
+        
+        
+        let gradientMaskLayer = CAGradientLayer()
+        gradientMaskLayer.frame = stadium_image.bounds
+
+        gradientMaskLayer.colors =  [UIColor.clear.cgColor, UIColor.white.cgColor, UIColor.clear.cgColor]
+        gradientMaskLayer.locations = [0.05, 0.5, 0.95]
+
+        stadium_image.layer.mask = gradientMaskLayer
+        
+        self.stadium_image.alpha = 0.6
         
         self.stadium_name.text = "C_stadium_name"
         self.team_name.text = "C_team_name"
+        self.team_name.alpha = 1
         
         let layout_ = UICollectionViewCompositionalLayout { index, env in
 
@@ -79,7 +116,7 @@ class TeamViewController:
             
             let item = NSCollectionLayoutItem (layoutSize: itemSize)
             
-            let groupSize = NSCollectionLayoutSize (widthDimension: .fractionalWidth(0.7), heightDimension: .absolute(255))
+            let groupSize = NSCollectionLayoutSize (widthDimension: .fractionalWidth(0.7), heightDimension: .absolute(300))
             
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
             
