@@ -9,11 +9,16 @@ import UIKit
 
 class TeamViewController:
     UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, reload_protocol {
+    
+    var teamModel : TeamViewModel = TeamViewModel()
+    
     func reload_data() {
         self.team_name.text = teamModel.getName()
         self.stadium_name.text = ""
         self.team_image.setImage(withURL: URL(string: teamModel.getLogo()))
         self.players_collection_view.reloadData()
+        
+        print("size : \(teamModel.getPlayersCount())")
     }
     
     func setTeamID(_ id: Int) {
@@ -23,8 +28,6 @@ class TeamViewController:
     func setSportType(_ type: SportType) {
         teamModel.setSportType(type.rawValue)
     }
-    
-    var teamModel : TeamViewModel = TeamViewModel()
     
     @IBOutlet weak var stadium_image: UIImageView!
     
@@ -50,22 +53,10 @@ class TeamViewController:
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Team_collection_cell", for: indexPath) as! TeamCollectionViewCell;
         
-        cell.player_image.setImage(withURL: URL(string: teamModel.getPlayerImage(index: indexPath.item)))
+        var url = teamModel.getPlayerImage(index: indexPath.item);
+        cell.player_image.setImage(withURL: URL(string: url ?? ""),  defaultImage: "player_placeholder")
         
         var name = teamModel.getPlayerName(index: indexPath.item)
-        
-        var name2 = "";
-        
-        for c in name {
-            if c.isLetter {
-                name2.append(c);
-            }
-        }
-        if (name2 == "") {
-            name = "Not Found"
-        }
-        
-        print("name ->> (\(name))")
         
         cell.player_name.text = name
         
@@ -79,14 +70,7 @@ class TeamViewController:
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //
         
-//        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
-//        backgroundImage.setImage(withURL: URL(string: "https://static9.depositphotos.com/1034300/1139/i/450/depositphotos_11398798-stock-photo-chalkboard-classroom-soccer-tactics-team.jpg"))
-//        backgroundImage.contentMode = UIView.ContentMode.scaleAspectFill
-//        self.view.insertSubview(backgroundImage, at: 0)
-        
-        teamModel.fetchTeam()
         
         self.players_collection_view.delegate = self;
         self.players_collection_view.dataSource = self
@@ -138,10 +122,16 @@ class TeamViewController:
         self.players_collection_view.register(UINib(nibName: "TeamCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Team_collection_cell")
         
         teamModel.viewer = self;
+        
+        teamModel.fetchTeam()
 
         // Do any additional setup after loading the view.
     }
-
+    
+//    override func viewDidAppear(_ animated : Bool) {
+//        //super.viewDidAppear(Bool)
+//        viewDidLoad()
+//    }
 
     /*
     // MARK: - Navigation

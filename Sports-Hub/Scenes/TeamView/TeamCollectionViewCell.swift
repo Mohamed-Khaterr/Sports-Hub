@@ -19,9 +19,6 @@ class TeamCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        player_name.text = "Messi"
-        player_image.image = UIImage(named: "premiere_league_logo");
-        
         grey_background.layer.shadowRadius = 8
         grey_background.layer.cornerRadius = 20
         grey_background.layer.masksToBounds = true
