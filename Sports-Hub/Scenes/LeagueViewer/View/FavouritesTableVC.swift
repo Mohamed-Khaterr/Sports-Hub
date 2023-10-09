@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import Lottie
 
 class FavouritesTableVC: UITableViewController, reload_protocol {
+    
+    let animationView = LottieAnimationView(name: "No_Data")
+    
     func reload_data() {
         tableView.reloadData()
     }
@@ -27,6 +31,24 @@ class FavouritesTableVC: UITableViewController, reload_protocol {
         favouritesViewModel.Table = self
         
         reset_view()
+        
+        title = "Favourites"
+        
+        animationView.translatesAutoresizingMaskIntoConstraints = false
+        animationView.contentMode = .scaleToFill
+
+        tableView.addSubview(animationView)
+
+
+        NSLayoutConstraint.activate([
+            animationView.centerXAnchor.constraint(equalTo: tableView.centerXAnchor),
+            animationView.centerYAnchor.constraint(equalTo: tableView.centerYAnchor)
+        ])
+
+        animationView.loopMode = .loop
+        animationView.play()
+        
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -37,6 +59,8 @@ class FavouritesTableVC: UITableViewController, reload_protocol {
     
     override func viewDidAppear(_ animated: Bool) {
         reset_view()
+        
+        
     }
 
     // MARK: - Table view data source
@@ -48,7 +72,15 @@ class FavouritesTableVC: UITableViewController, reload_protocol {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return favouritesViewModel.getCount()
+        
+        var cnt = favouritesViewModel.getCount()
+        
+        animationView.isHidden = cnt > 0
+        if !animationView.isHidden {
+            animationView.play()
+        }
+        
+        return cnt
     }
 
     
