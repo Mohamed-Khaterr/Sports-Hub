@@ -37,9 +37,6 @@ class TableViewCell: UITableViewCell {
         
         set_favourite_image()
         
-        //var mx = max(league_image.frame.width, league_image.frame.height)
-        
-        //var radius : Float = Float(mx / 2.0);
         
         league_image.layer.borderWidth = 1
         league_image.layer.masksToBounds = false
@@ -47,7 +44,7 @@ class TableViewCell: UITableViewCell {
         league_image.layer.cornerRadius = max(league_image.frame.width, league_image.frame.height) / 2
         league_image.layer.cornerRadius = 20
         league_image.clipsToBounds = true
-        league_image.backgroundColor = .black
+        league_image.backgroundColor = .systemBackground
 
         // Initialization code
     }

@@ -124,7 +124,7 @@ class LeagueDetailsViewController: UIViewController {
         
         let item = NSCollectionLayoutItem (layoutSize: itemSize)
         
-        let groupSize = NSCollectionLayoutSize (widthDimension: .fractionalWidth(0.4), heightDimension: .absolute(155))
+        let groupSize = NSCollectionLayoutSize (widthDimension: .fractionalWidth(0.4), heightDimension: .fractionalWidth(0.4))
         
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
@@ -202,6 +202,20 @@ extension LeagueDetailsViewController: UICollectionViewDelegate, UICollectionVie
         if indexPath.section == 2 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamCell", for: indexPath) as! CollectionViewCell
             viewModel.configTeamCell(cell, atIndex: indexPath.row)
+            
+            cell.team_image.layer.borderWidth = 1
+            cell.team_image.layer.masksToBounds = false
+            cell.team_image.layer.borderColor = UIColor.black.cgColor
+            
+            var mx = max (cell.team_image.frame.width, cell.team_image.frame.height)
+            cell.team_image.layer.cornerRadius = mx / 2
+            
+            cell.team_image.clipsToBounds = true
+            cell.team_image.backgroundColor = .systemBackground
+            
+            
+            //here
+            
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EventCollectionViewCell.identifier, for: indexPath) as! EventCollectionViewCell
