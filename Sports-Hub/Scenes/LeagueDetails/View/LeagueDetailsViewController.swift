@@ -13,38 +13,50 @@ class LeagueDetailsViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
+    
+    private lazy var favoriteAnimation = LottieAnimation(animation: "favoriteAnimation", addTo: self.view)
+    private lazy var unFavoriteAnimation = LottieAnimation(animation: "unfavoriteAnimation", addTo: self.view)
+    
+    
     // MARK: - Properties
     let viewModel = LeagueDetailsViewModel()
-    private var isFavorite = false
-    private var favBarButtonImageName: String {
-        return isFavorite ? "heart.fill" : "heart"
-    }
+    private var isFavourite = false
 
     // MARK: LifeCycel
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavigationBar()
-        setupCollectionView()
         bind()
+        viewModel.fetchLeague()
         viewModel.fetchUpcomingEvents()
         viewModel.fetchLatestEvents()
         viewModel.fetchLeagueTeams()
+        
+        setupNavigationBar()
+        setupCollectionView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.fetchLeagueFromDB()
     }
     
     // MARK: - NavigationBar
     private func setupNavigationBar() {
         title = "League Details"
-//        let favBarButton = UIBarButtonItem(image: UIImage(systemName: favBarButtonImageName), style: .done, target: self, action: #selector(favoriteButtonPressed))
-//        favBarButton.tintColor = .label
-//        navigationItem.rightBarButtonItem = favBarButton
+        let favBarButton = UIBarButtonItem(image: nil, style: .done, target: self, action: #selector(favoriteButtonPressed))
+        favBarButton.tintColor = .label
+        navigationItem.rightBarButtonItem = favBarButton
     }
     
     // MARK: - Favorite Button
     @objc private func favoriteButtonPressed() {
-        isFavorite = !isFavorite
-        navigationItem.rightBarButtonItem?.image = UIImage(systemName: favBarButtonImageName)
-        
-        // TODO: Save to CoreData
+        if isFavourite {
+            viewModel.removeLeagueFromFavourites()
+            unFavoriteAnimation.start()
+        } else {
+            viewModel.addLeagueToFavourites()
+            favoriteAnimation.start()
+        }
     }
     
     
@@ -159,6 +171,13 @@ class LeagueDetailsViewController: UIViewController {
             teamVC.setTeamID(teamID)
             teamVC.setSportType(sportType)
             self?.navigationController?.pushViewController(teamVC, animated: true)
+        }
+        
+        viewModel.isFavouriteLeague = { [weak self] isFavourite in
+            self?.isFavourite = isFavourite
+            let imageName = isFavourite ? "heart.fill" : "heart"
+            self?.navigationItem.rightBarButtonItem?.image = UIImage(systemName: imageName)
+            self?.navigationItem.rightBarButtonItem?.tintColor = isFavourite ? .red : .label
         }
     }
 }
