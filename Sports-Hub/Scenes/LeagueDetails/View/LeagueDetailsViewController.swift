@@ -13,6 +13,11 @@ class LeagueDetailsViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
+    
+    private lazy var favoriteAnimation = LottieAnimation(animation: "favoriteAnimation", addTo: self.view)
+    private lazy var unFavoriteAnimation = LottieAnimation(animation: "unfavoriteAnimation", addTo: self.view)
+    
+    
     // MARK: - Properties
     let viewModel = LeagueDetailsViewModel()
     private var isFavorite = false
@@ -34,15 +39,21 @@ class LeagueDetailsViewController: UIViewController {
     // MARK: - NavigationBar
     private func setupNavigationBar() {
         title = "League Details"
-//        let favBarButton = UIBarButtonItem(image: UIImage(systemName: favBarButtonImageName), style: .done, target: self, action: #selector(favoriteButtonPressed))
-//        favBarButton.tintColor = .label
-//        navigationItem.rightBarButtonItem = favBarButton
+        let favBarButton = UIBarButtonItem(image: UIImage(systemName: favBarButtonImageName), style: .done, target: self, action: #selector(favoriteButtonPressed))
+        favBarButton.tintColor = .label
+        navigationItem.rightBarButtonItem = favBarButton
     }
     
     // MARK: - Favorite Button
     @objc private func favoriteButtonPressed() {
         isFavorite = !isFavorite
         navigationItem.rightBarButtonItem?.image = UIImage(systemName: favBarButtonImageName)
+        navigationItem.rightBarButtonItem?.tintColor = isFavorite ? .red : .label
+        if isFavorite {
+            favoriteAnimation.start()
+        } else {
+            unFavoriteAnimation.start()
+        }
         
         // TODO: Save to CoreData
     }
