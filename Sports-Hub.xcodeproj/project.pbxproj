@@ -263,7 +263,6 @@
 			children = (
 				014FC20B2AC3AC280001BBAB /* TabBar */,
 				014FC2032AC3A7F60001BBAB /* CollectionViewCells */,
-				014FC2022AC3A7E80001BBAB /* TableViewCells */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -307,13 +306,6 @@
 				01501EFA2AC5AE6E0068CA83 /* UIImageView+Extension.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		014FC2022AC3A7E80001BBAB /* TableViewCells */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = TableViewCells;
 			sourceTree = "<group>";
 		};
 		014FC2032AC3A7F60001BBAB /* CollectionViewCells */ = {
