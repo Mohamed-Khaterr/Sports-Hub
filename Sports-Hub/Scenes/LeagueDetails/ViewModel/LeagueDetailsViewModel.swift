@@ -150,7 +150,7 @@ class LeagueDetailsViewModel {
                     self?.render?()
                 }
             case .failure(let error):
-                self?.errorOccurred?(error.localizedDescription)
+                self?.errorOccurred?("Upcoming Events error: " + error.localizedDescription)
             }
         }
     }
@@ -172,7 +172,7 @@ class LeagueDetailsViewModel {
                     self?.render?()
                 }
             case .failure(let error):
-                self?.errorOccurred?(error.localizedDescription)
+                self?.errorOccurred?("Latest Events error: " + error.localizedDescription)
             }
         }
     }
@@ -191,7 +191,7 @@ class LeagueDetailsViewModel {
                     self?.render?()
                 }
             case .failure(let error):
-                self?.errorOccurred?(error.localizedDescription)
+                self?.errorOccurred?("Teams error: " + error.localizedDescription)
             }
         }
     }
