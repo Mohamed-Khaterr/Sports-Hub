@@ -31,10 +31,21 @@ class LottieAnimation {
         ])
     }
     
-    func start() {
-        addToSuperView()
+    func start(duration: Double = 1, loop: Bool = false, removeOnFinish: Bool = true) {
+        addToSuperView()        
+        lottieAnimationView.loopMode = loop ? .loop : .playOnce
         lottieAnimationView.play()
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+        
+        if removeOnFinish {
+            DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
+                self.lottieAnimationView.stop()
+                self.lottieAnimationView.removeFromSuperview()
+            }
+        }
+    }
+    
+    func end() {
+        DispatchQueue.main.async {
             self.lottieAnimationView.stop()
             self.lottieAnimationView.removeFromSuperview()
         }
