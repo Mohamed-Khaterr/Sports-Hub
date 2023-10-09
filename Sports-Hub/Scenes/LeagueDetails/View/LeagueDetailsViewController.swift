@@ -207,11 +207,11 @@ extension LeagueDetailsViewController: UICollectionViewDelegate, UICollectionVie
             cell.team_image.layer.masksToBounds = false
             cell.team_image.layer.borderColor = UIColor.black.cgColor
             
-            var mx = max (cell.team_image.frame.width, cell.team_image.frame.height)
-            cell.team_image.layer.cornerRadius = mx / 2
+            let mx = max (cell.team_image.frame.width, cell.team_image.frame.height)
+            cell.team_image.layer.cornerRadius = (mx / 2) - 5
             
             cell.team_image.clipsToBounds = true
-            cell.team_image.backgroundColor = .systemBackground
+            cell.team_image.backgroundColor = .white
             
             
             //here

@@ -10,11 +10,12 @@ import UIKit
 class TeamViewController:
     UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, reload_protocol {
     
+    let gradientMaskLayer = CAGradientLayer()
     var teamModel : TeamViewModel = TeamViewModel()
     
     func reload_data() {
         self.team_name.text = teamModel.getName()
-        self.stadium_name.text = ""
+        //self.stadium_name.text = ""
         self.team_image.setImage(withURL: URL(string: teamModel.getLogo()))
         self.players_collection_view.reloadData()
         
@@ -37,7 +38,7 @@ class TeamViewController:
     
     @IBOutlet weak var team_name: UILabel!
     
-    @IBOutlet weak var stadium_name: UILabel!
+    //@IBOutlet weak var stadium_name: UILabel!
     
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -80,17 +81,19 @@ class TeamViewController:
         self.stadium_image.setImage(withURL: URL(string: "https://www.pixelstalk.net/wp-content/uploads/2016/11/Awesome-Camp-Nou-Background.jpg"))
         
         
-        let gradientMaskLayer = CAGradientLayer()
+        
+        
+
+        gradientMaskLayer.colors =  [UIColor.white.cgColor, UIColor.clear.cgColor, UIColor.white.cgColor]
+        gradientMaskLayer.locations = [0.05, 0.5, 0.9]
+
+        //stadium_image.layer.mask = gradientMaskLayer
+        stadium_image.layer.addSublayer(gradientMaskLayer)
         gradientMaskLayer.frame = stadium_image.bounds
-
-        gradientMaskLayer.colors =  [UIColor.clear.cgColor, UIColor.white.cgColor, UIColor.clear.cgColor]
-        gradientMaskLayer.locations = [0.05, 0.5, 0.95]
-
-        stadium_image.layer.mask = gradientMaskLayer
         
-        self.stadium_image.alpha = 0.6
+        self.stadium_image.alpha = 1
         
-        self.stadium_name.text = "C_stadium_name"
+        //self.stadium_name.text = "C_stadium_name"
         self.team_name.text = "C_team_name"
         self.team_name.alpha = 1
         
@@ -126,6 +129,15 @@ class TeamViewController:
         teamModel.fetchTeam()
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        if UIDevice.current.orientation.isLandscape {
+            gradientMaskLayer.removeFromSuperlayer()
+        } else {
+            stadium_image.layer.addSublayer(gradientMaskLayer)
+        }
     }
     
 //    override func viewDidAppear(_ animated : Bool) {
