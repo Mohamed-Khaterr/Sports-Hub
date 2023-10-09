@@ -88,12 +88,14 @@ class SportsViewController: UIViewController {
     
     private func bindViewModel() {
         viewModel.didSelectSport = { [weak self] sportType in
-            let leagueViewer = TableView_XIB()
-            leagueViewer.setSportType(sportType)
-            self?.navigationController?.pushViewController(leagueViewer, animated: true)
-//            let leagueDetailsVC = LeagueDetailsViewController()
-//            leagueDetailsVC.viewModel.setSportType(sportType)
-//            self?.navigationController?.pushViewController(leagueDetailsVC, animated: true)
+            guard let self = self else { return }
+            if InternetMointor.shared.isConnected {
+                let leagueViewer = TableView_XIB()
+                leagueViewer.setSportType(sportType)
+                self.navigationController?.pushViewController(leagueViewer, animated: true)
+            } else {
+                Alert.show(on: self, title: "Connnection", message: "No internet connection available, Please check your internet connection")
+            }
         }
     }
 }
