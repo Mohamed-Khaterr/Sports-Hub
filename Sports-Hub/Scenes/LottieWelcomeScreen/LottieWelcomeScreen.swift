@@ -11,6 +11,9 @@ import Lottie
 import Foundation
 
 class LottieWelcomeScreen: UIViewController {
+    
+    // Completion Handler called when animation time is finish
+    public var didFinishAnimation: (() -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,40 +21,24 @@ class LottieWelcomeScreen: UIViewController {
         let animationView = LottieAnimationView(name: "LottieAnimation")
         animationView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(animationView)
-
+        
         NSLayoutConstraint.activate([
-          animationView.topAnchor.constraint(equalTo: view.topAnchor),
-          animationView.leftAnchor.constraint(equalTo: view.leftAnchor),
-          animationView.rightAnchor.constraint(equalTo: view.rightAnchor),
-          animationView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            animationView.topAnchor.constraint(equalTo: view.topAnchor),
+            animationView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            animationView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            animationView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
-
+        
         animationView.loopMode = .loop
         animationView.play()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
-            
-            var tab_VC = TabBarController()
-            
-            self.navigationController?.popViewController(animated: true)
-            self.navigationController?.pushViewController(tab_VC, animated: true)
-
-            
-            print("done")
+            self.didFinishAnimation?()
         })
-      }
-
-        // Do any additional setup after loading the view.
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
-    */
+    
+    deinit {
+        print("LottieWelcomeScreen removed from memory (deinitialized)")
+    }
 
 }

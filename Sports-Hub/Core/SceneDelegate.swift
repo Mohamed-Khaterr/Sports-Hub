@@ -15,11 +15,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
-        let vc = UINavigationController(rootViewController: LottieWelcomeScreen())
-        vc.navigationBar.removeFromSuperview()
-        window.rootViewController = vc
+        let lottieWelcomVC = LottieWelcomeScreen()
+        window.rootViewController = lottieWelcomVC
         window.makeKeyAndVisible()
         self.window = window
+        
+        lottieWelcomVC.didFinishAnimation = { [weak self] in
+            // Display TabBarController with animation
+            UIView.animate(withDuration: 0.3) {
+                self?.window?.rootViewController?.view.alpha = 0
+            } completion: { _ in
+                self?.window?.rootViewController = TabBarController()
+                self?.window?.rootViewController?.view.alpha = 0
+                UIView.animate(withDuration: 0.3) {
+                    self?.window?.rootViewController?.view.alpha = 1
+                }
+            }
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
