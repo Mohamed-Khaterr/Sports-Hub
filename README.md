@@ -52,6 +52,7 @@ Sports app allows the user to see all sports, view leagues inside them, see the 
 <!-- ____________________________________________________________________________ -->
 ## Technologies
 - CoreData
+- NWPathMonitor
 
 
 
