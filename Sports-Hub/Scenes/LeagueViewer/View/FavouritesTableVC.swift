@@ -17,7 +17,7 @@ class FavouritesTableVC: UITableViewController, reload_protocol {
     }
     
     func reset_view () {
-        favouritesViewModel.reloadData()
+        favouritesViewModel.reload_data()
     }
     
     var favouritesViewModel = FavouritesViewModel()
@@ -57,10 +57,9 @@ class FavouritesTableVC: UITableViewController, reload_protocol {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
+        favouritesViewModel.fetchLeaguesFromCoreData()
         reset_view()
-        
-        
     }
 
     // MARK: - Table view data source
@@ -99,6 +98,7 @@ class FavouritesTableVC: UITableViewController, reload_protocol {
         cell.delegate = self
         
         cell.set_favourite_image()
+        cell.favourite.isHidden = true
         
         return cell
     }
@@ -130,17 +130,26 @@ class FavouritesTableVC: UITableViewController, reload_protocol {
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+            let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
+                let league = FavouriteLeague()
+                league.id = self.favouritesViewModel.getID(index: indexPath.row)
+                league.leagueName = self.favouritesViewModel.getName(index: indexPath.row)
+                league.leagueLogo = self.favouritesViewModel.getLogo(index: indexPath.row)
+                league.sportType = self.favouritesViewModel.getSportType(index: indexPath.row)
+                CoreDataClassManager.manager.delete_item(leagueData: league)
+                self.favouritesViewModel.fetchLeaguesFromCoreData()
+                tableView.deleteRows(at: [indexPath], with: .left)
+            }
+            
+            Alert.show(on: self, title: "Delete League", message: "Are you sure that you want to delete league from Favourites", actions: [cancelAction, deleteAction])
+        }
     }
-    */
+    
 
     /*
     // Override to support rearranging the table view.
