@@ -77,8 +77,8 @@ class SportsViewController: UIViewController {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .vertical
         flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
-        let viewWidth = view.frame.width
-        let width = (appearance == .list) ? (viewWidth - 36) : viewWidth * 0.46
+        let viewWidth = collectionView.frame.width
+        let width = (appearance == .list) ? (viewWidth - 36) : viewWidth * 0.45
         flowLayout.itemSize = .init(width: width, height: 100)
         return flowLayout
     }
