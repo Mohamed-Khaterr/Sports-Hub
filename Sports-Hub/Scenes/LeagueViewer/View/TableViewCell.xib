@@ -18,16 +18,16 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WAn-wt-92K">
-                        <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
+                        <rect key="frame" x="8" y="0.0" width="75" height="75"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="English Premier League" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bkj-ex-GQU">
-                        <rect key="frame" x="86" y="27" width="232" height="21"/>
+                        <rect key="frame" x="94" y="27" width="216" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ENa-LQ-otW">
-                        <rect key="frame" x="360" y="0.0" width="75" height="75"/>
+                        <rect key="frame" x="352" y="0.0" width="75" height="75"/>
                         <accessibility key="accessibilityConfiguration">
                             <accessibilityTraits key="traits" button="YES" image="YES"/>
                         </accessibility>
@@ -35,7 +35,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="WAn-wt-92K" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="6Ui-gi-b1R"/>
-                    <constraint firstAttribute="trailing" secondItem="ENa-LQ-otW" secondAttribute="trailing" id="KpV-M4-W5R"/>
+                    <constraint firstAttribute="trailing" secondItem="ENa-LQ-otW" secondAttribute="trailing" constant="8" id="KpV-M4-W5R"/>
                     <constraint firstItem="WAn-wt-92K" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" id="L4b-6F-9Ym"/>
                     <constraint firstItem="ENa-LQ-otW" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="b95-VM-Dcf"/>
                     <constraint firstItem="Bkj-ex-GQU" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="bvn-h5-Zjm"/>
@@ -43,7 +43,7 @@
                     <constraint firstItem="Bkj-ex-GQU" firstAttribute="leading" secondItem="WAn-wt-92K" secondAttribute="trailing" constant="11" id="eN9-bb-9TY"/>
                     <constraint firstItem="ENa-LQ-otW" firstAttribute="leading" secondItem="Bkj-ex-GQU" secondAttribute="trailing" constant="42" id="jRl-56-0vV"/>
                     <constraint firstItem="ENa-LQ-otW" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" id="lCe-zV-sLR"/>
-                    <constraint firstItem="WAn-wt-92K" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="lgZ-2D-q8a"/>
+                    <constraint firstItem="WAn-wt-92K" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="lgZ-2D-q8a"/>
                     <constraint firstItem="WAn-wt-92K" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="1:1" id="yZZ-82-pfl"/>
                 </constraints>
             </tableViewCellContentView>

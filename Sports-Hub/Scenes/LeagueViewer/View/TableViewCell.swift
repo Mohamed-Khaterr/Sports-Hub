@@ -58,9 +58,11 @@ class TableViewCell: UITableViewCell {
     func set_favourite_image() {
         if isLeagueInFavourites() {
             favourite.image = UIImage(systemName: "suit.heart.fill")
+            favourite.tintColor = .red
         }
         else {
             favourite.image = UIImage(systemName: "suit.heart");
+            favourite.tintColor = .label
         }
     }
 
