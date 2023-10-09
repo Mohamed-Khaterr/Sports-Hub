@@ -44,6 +44,7 @@ class LeagueDetailsViewModel {
     var errorOccurred: ((String) -> Void)?
     var didSelecteTeam: ((Int, SportType) -> Void)?
     var isFavouriteLeague: ((Bool) -> Void)?
+    var updateNavigationTitle: ((String) -> Void)?
     
     var noOfSections: Int {
         return 3
@@ -201,6 +202,7 @@ class LeagueDetailsViewModel {
             switch result {
             case .success(let leagues):
                 self?.league = leagues.filter { $0.id == self?.leagueID }.first
+                self?.updateNavigationTitle?(self?.league?.name ?? "League Details")
                 self?.fetchLeagueFromDB()
             case .failure(let error):
                 print(error)

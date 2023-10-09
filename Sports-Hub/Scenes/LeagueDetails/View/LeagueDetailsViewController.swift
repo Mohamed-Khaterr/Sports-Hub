@@ -179,6 +179,10 @@ class LeagueDetailsViewController: UIViewController {
             self?.navigationItem.rightBarButtonItem?.image = UIImage(systemName: imageName)
             self?.navigationItem.rightBarButtonItem?.tintColor = isFavourite ? .red : .label
         }
+        
+        viewModel.updateNavigationTitle = { [weak self] title in
+            self?.title = title
+        }
     }
 }
 
