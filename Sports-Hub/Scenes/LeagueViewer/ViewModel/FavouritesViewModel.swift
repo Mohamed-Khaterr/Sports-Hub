@@ -36,15 +36,15 @@ class FavouritesViewModel : reload_protocol {
         Table?.reload_data()
     }
     
-    func reloadData () {
+    func fetchLeaguesFromCoreData () {
         
         cachedLeagues = CoreDataClassManager.manager.fetch_from_db()
         
         
-        reload_data()
+        //reload_data()
     }
     
     init () {
-        reloadData()
+        fetchLeaguesFromCoreData()
     }
 }
