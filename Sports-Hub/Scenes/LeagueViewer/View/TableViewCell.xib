@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="75" id="KGk-i7-Jjw" customClass="TableViewCell" customModule="Sports_Hub" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="435" height="75"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="435" height="75"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WAn-wt-92K">
+                        <rect key="frame" x="8" y="0.0" width="75" height="75"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="English Premier League" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bkj-ex-GQU">
+                        <rect key="frame" x="94" y="27" width="216" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ENa-LQ-otW">
+                        <rect key="frame" x="352" y="0.0" width="75" height="75"/>
+                        <accessibility key="accessibilityConfiguration">
+                            <accessibilityTraits key="traits" button="YES" image="YES"/>
+                        </accessibility>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="WAn-wt-92K" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="6Ui-gi-b1R"/>
+                    <constraint firstAttribute="trailing" secondItem="ENa-LQ-otW" secondAttribute="trailing" constant="8" id="KpV-M4-W5R"/>
+                    <constraint firstItem="WAn-wt-92K" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" id="L4b-6F-9Ym"/>
+                    <constraint firstItem="ENa-LQ-otW" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="b95-VM-Dcf"/>
+                    <constraint firstItem="Bkj-ex-GQU" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="bvn-h5-Zjm"/>
+                    <constraint firstItem="ENa-LQ-otW" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="1:1" id="eDG-ND-Y13"/>
+                    <constraint firstItem="Bkj-ex-GQU" firstAttribute="leading" secondItem="WAn-wt-92K" secondAttribute="trailing" constant="11" id="eN9-bb-9TY"/>
+                    <constraint firstItem="ENa-LQ-otW" firstAttribute="leading" secondItem="Bkj-ex-GQU" secondAttribute="trailing" constant="42" id="jRl-56-0vV"/>
+                    <constraint firstItem="ENa-LQ-otW" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" id="lCe-zV-sLR"/>
+                    <constraint firstItem="WAn-wt-92K" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="lgZ-2D-q8a"/>
+                    <constraint firstItem="WAn-wt-92K" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="1:1" id="yZZ-82-pfl"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="LeagueName" destination="Bkj-ex-GQU" id="rNU-9Q-uFb"/>
+                <outlet property="favourite" destination="ENa-LQ-otW" id="o6c-pL-iT6"/>
+                <outlet property="league_image" destination="WAn-wt-92K" id="4nn-he-z2l"/>
+            </connections>
+            <point key="canvasLocation" x="226.71755725190837" y="9.5070422535211279"/>
+        </tableViewCell>
+    </objects>
+</document>

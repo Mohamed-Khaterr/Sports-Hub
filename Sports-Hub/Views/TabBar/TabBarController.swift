@@ -28,14 +28,13 @@ class TabBarController: UITabBarController {
     }
     
     private func setupTabs() {
-        let sports = UIViewController()
-        sports.view.backgroundColor = .white
-        let fav = UIViewController()
-        fav.view.backgroundColor = .blue
+        let sportsVC = SportsViewController()
+        //let fav = TableView_XIB()
+        let fav = FavouritesTableVC()
         
         let vcs: [UIViewController] = [
-            createNavigationController(withRoot: sports, barTitle: "Sports", barImage: nil),
-            createNavigationController(withRoot: fav, barTitle: "Favorites", barImage: nil),
+            createNavigationController(withRoot: sportsVC, barTitle: "Sports", barImage: UIImage(named: "sports")),
+            createNavigationController(withRoot: fav, barTitle: "Favorites", barImage: UIImage(systemName: "heart")),
             // Add your View Controller Here (NOTE: if you want viewController inside NavigationController use createNavigationController method)
             // Example: createNavigationController(withRoot: testViewController, barTitle: "Test", barImage: UIImage(systemName: "plus")),
         ]
@@ -48,6 +47,7 @@ class TabBarController: UITabBarController {
         let nav = UINavigationController(rootViewController: vc)
         nav.tabBarItem.title = title
         nav.tabBarItem.image = image
+        nav.navigationBar.tintColor = .label
         return nav
     }
 }
