@@ -47,6 +47,7 @@
 		01883D892AD1BDBB00D02C05 /* ASEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01883D882AD1BDBB00D02C05 /* ASEndpoint.swift */; };
 		018FCFF82ACF72C000363F00 /* SportType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018FCFF72ACF72C000363F00 /* SportType.swift */; };
 		01B3F6B82ACF5D4D00490D64 /* Cricket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B3F6B72ACF5D4D00490D64 /* Cricket.swift */; };
+		01BF01E72AD427730056EE4C /* InternetMointor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BF01E62AD427730056EE4C /* InternetMointor.swift */; };
 		01CA528F2ACA753800EEC4BF /* ASEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA528E2ACA753800EEC4BF /* ASEndPoint.swift */; };
 		01CA52912ACA759800EEC4BF /* ASEndPointManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA52902ACA759800EEC4BF /* ASEndPointManager.swift */; };
 		01CA52962ACA782100EEC4BF /* Football.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA52952ACA782100EEC4BF /* Football.swift */; };
@@ -114,6 +115,7 @@
 		01883D882AD1BDBB00D02C05 /* ASEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASEndpoint.swift; sourceTree = "<group>"; };
 		018FCFF72ACF72C000363F00 /* SportType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportType.swift; sourceTree = "<group>"; };
 		01B3F6B72ACF5D4D00490D64 /* Cricket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cricket.swift; sourceTree = "<group>"; };
+		01BF01E62AD427730056EE4C /* InternetMointor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetMointor.swift; sourceTree = "<group>"; };
 		01CA528E2ACA753800EEC4BF /* ASEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASEndPoint.swift; sourceTree = "<group>"; };
 		01CA52902ACA759800EEC4BF /* ASEndPointManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASEndPointManager.swift; sourceTree = "<group>"; };
 		01CA52952ACA782100EEC4BF /* Football.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Football.swift; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 				012B70682AD0B13C00627A6F /* Constant.swift */,
 				01883D862AD198DA00D02C05 /* Alert.swift */,
 				0165B5F12AD395920027730F /* LottieAnimation.swift */,
+				01BF01E62AD427730056EE4C /* InternetMointor.swift */,
 				0165B5F32AD39B940027730F /* LottieAnimations */,
 				014FC1FF2AC3A6E50001BBAB /* Extensions */,
 			);
@@ -585,6 +588,7 @@
 				01CA52A22ACA860C00EEC4BF /* Event.swift in Sources */,
 				01866DD22AD03E5C004386B0 /* reload_protocol.swift in Sources */,
 				0123F2FF2ACEF98400AAF74C /* CollectionViewCell.swift in Sources */,
+				01BF01E72AD427730056EE4C /* InternetMointor.swift in Sources */,
 				012B70692AD0B13C00627A6F /* Constant.swift in Sources */,
 				01CA52982ACA787D00EEC4BF /* ASNetworkProvider.swift in Sources */,
 				01B3F6B82ACF5D4D00490D64 /* Cricket.swift in Sources */,
