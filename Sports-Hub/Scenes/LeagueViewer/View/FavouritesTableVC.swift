@@ -73,16 +73,20 @@ class FavouritesTableVC: UITableViewController, reload_protocol {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        
-        let vc = LeagueDetailsViewController()
-        vc.viewModel.setLeague(id: favouritesViewModel.getID(index: indexPath.row))
-        switch favouritesViewModel.getSportType(index: indexPath.row) {
-        case "Football": vc.viewModel.setSportType(.football)
-        case "Basketball": vc.viewModel.setSportType(.basketball)
-        case "Cricket": vc.viewModel.setSportType(.cricket)
-        default: return
+        if InternetMointor.shared.isConnected {
+            let vc = LeagueDetailsViewController()
+            vc.viewModel.setLeague(id: favouritesViewModel.getID(index: indexPath.row))
+            switch favouritesViewModel.getSportType(index: indexPath.row) {
+            case "Football": vc.viewModel.setSportType(.football)
+            case "Basketball": vc.viewModel.setSportType(.basketball)
+            case "Cricket": vc.viewModel.setSportType(.cricket)
+            default: return
+            }
+            self.navigationController?.pushViewController(vc, animated: true)
+        } else {
+            Alert.show(on: self, title: "Connnection", message: "No internet connection available, Please check your internet connection")
         }
-        self.navigationController?.pushViewController(vc, animated: true)
+        
     }
     
 
