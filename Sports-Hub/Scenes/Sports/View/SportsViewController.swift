@@ -47,6 +47,11 @@ class SportsViewController: UIViewController {
         setupCollectionView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = false
+    }
+    
     
     
     private func setupNavigationBar() {
@@ -93,6 +98,7 @@ class SportsViewController: UIViewController {
                 let leagueViewer = TableView_XIB()
                 leagueViewer.setSportType(sportType)
                 self.navigationController?.pushViewController(leagueViewer, animated: true)
+                self.tabBarController?.tabBar.isHidden = true
             } else {
                 Alert.show(on: self, title: "Connnection", message: "No internet connection available, Please check your internet connection")
             }
