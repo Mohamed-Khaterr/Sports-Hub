@@ -47,6 +47,11 @@ class SportsViewController: UIViewController {
         setupCollectionView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = false
+    }
+    
     
     
     private func setupNavigationBar() {
@@ -72,8 +77,8 @@ class SportsViewController: UIViewController {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .vertical
         flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
-        let viewWidth = view.frame.width
-        let width = (appearance == .list) ? (viewWidth - 36) : viewWidth * 0.46
+        let viewWidth = collectionView.frame.width
+        let width = (appearance == .list) ? (viewWidth - 36) : viewWidth * 0.45
         flowLayout.itemSize = .init(width: width, height: 100)
         return flowLayout
     }
@@ -88,12 +93,15 @@ class SportsViewController: UIViewController {
     
     private func bindViewModel() {
         viewModel.didSelectSport = { [weak self] sportType in
-            let leagueViewer = TableView_XIB()
-            leagueViewer.setSportType(sportType)
-            self?.navigationController?.pushViewController(leagueViewer, animated: true)
-//            let leagueDetailsVC = LeagueDetailsViewController()
-//            leagueDetailsVC.viewModel.setSportType(sportType)
-//            self?.navigationController?.pushViewController(leagueDetailsVC, animated: true)
+            guard let self = self else { return }
+            if InternetMointor.shared.isConnected {
+                let leagueViewer = TableView_XIB()
+                leagueViewer.setSportType(sportType)
+                self.navigationController?.pushViewController(leagueViewer, animated: true)
+                self.tabBarController?.tabBar.isHidden = true
+            } else {
+                Alert.show(on: self, title: "Connnection", message: "No internet connection available, Please check your internet connection")
+            }
         }
     }
 }

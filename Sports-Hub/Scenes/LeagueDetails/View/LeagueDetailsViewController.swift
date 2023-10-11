@@ -13,38 +13,50 @@ class LeagueDetailsViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
+    
+    private lazy var favoriteAnimation = LottieAnimation(animation: "favoriteAnimation", addTo: self.view)
+    private lazy var unFavoriteAnimation = LottieAnimation(animation: "unfavoriteAnimation", addTo: self.view)
+    
+    
     // MARK: - Properties
     let viewModel = LeagueDetailsViewModel()
-    private var isFavorite = false
-    private var favBarButtonImageName: String {
-        return isFavorite ? "heart.fill" : "heart"
-    }
+    private var isFavourite = false
 
     // MARK: LifeCycel
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavigationBar()
-        setupCollectionView()
         bind()
+        viewModel.fetchLeague()
         viewModel.fetchUpcomingEvents()
         viewModel.fetchLatestEvents()
         viewModel.fetchLeagueTeams()
+        
+        setupNavigationBar()
+        setupCollectionView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.fetchLeagueFromDB()
     }
     
     // MARK: - NavigationBar
     private func setupNavigationBar() {
         title = "League Details"
-//        let favBarButton = UIBarButtonItem(image: UIImage(systemName: favBarButtonImageName), style: .done, target: self, action: #selector(favoriteButtonPressed))
-//        favBarButton.tintColor = .label
-//        navigationItem.rightBarButtonItem = favBarButton
+        let favBarButton = UIBarButtonItem(image: nil, style: .done, target: self, action: #selector(favoriteButtonPressed))
+        favBarButton.tintColor = .label
+        navigationItem.rightBarButtonItem = favBarButton
     }
     
     // MARK: - Favorite Button
     @objc private func favoriteButtonPressed() {
-        isFavorite = !isFavorite
-        navigationItem.rightBarButtonItem?.image = UIImage(systemName: favBarButtonImageName)
-        
-        // TODO: Save to CoreData
+        if isFavourite {
+            viewModel.removeLeagueFromFavourites()
+            unFavoriteAnimation.start()
+        } else {
+            viewModel.addLeagueToFavourites()
+            favoriteAnimation.start()
+        }
     }
     
     
@@ -112,7 +124,7 @@ class LeagueDetailsViewController: UIViewController {
         
         let item = NSCollectionLayoutItem (layoutSize: itemSize)
         
-        let groupSize = NSCollectionLayoutSize (widthDimension: .fractionalWidth(0.4), heightDimension: .absolute(155))
+        let groupSize = NSCollectionLayoutSize (widthDimension: .fractionalWidth(0.4), heightDimension: .fractionalWidth(0.4))
         
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
@@ -160,6 +172,17 @@ class LeagueDetailsViewController: UIViewController {
             teamVC.setSportType(sportType)
             self?.navigationController?.pushViewController(teamVC, animated: true)
         }
+        
+        viewModel.isFavouriteLeague = { [weak self] isFavourite in
+            self?.isFavourite = isFavourite
+            let imageName = isFavourite ? "heart.fill" : "heart"
+            self?.navigationItem.rightBarButtonItem?.image = UIImage(systemName: imageName)
+            self?.navigationItem.rightBarButtonItem?.tintColor = isFavourite ? .red : .label
+        }
+        
+        viewModel.updateNavigationTitle = { [weak self] title in
+            self?.title = title
+        }
     }
 }
 
@@ -179,6 +202,20 @@ extension LeagueDetailsViewController: UICollectionViewDelegate, UICollectionVie
         if indexPath.section == 2 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamCell", for: indexPath) as! CollectionViewCell
             viewModel.configTeamCell(cell, atIndex: indexPath.row)
+            
+            cell.team_image.layer.borderWidth = 1
+            cell.team_image.layer.masksToBounds = false
+            cell.team_image.layer.borderColor = UIColor.black.cgColor
+            
+            let mx = max (cell.team_image.frame.width, cell.team_image.frame.height)
+            cell.team_image.layer.cornerRadius = (mx / 2) - 5
+            
+            cell.team_image.clipsToBounds = true
+            cell.team_image.backgroundColor = .white
+            
+            
+            //here
+            
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EventCollectionViewCell.identifier, for: indexPath) as! EventCollectionViewCell

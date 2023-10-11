@@ -36,6 +36,15 @@ class TableViewCell: UITableViewCell {
         favourite.isUserInteractionEnabled = true
         
         set_favourite_image()
+        
+        
+        league_image.layer.borderWidth = 1
+        league_image.layer.masksToBounds = false
+        league_image.layer.borderColor = UIColor.black.cgColor
+        league_image.layer.cornerRadius = max(league_image.frame.width, league_image.frame.height) / 2
+        league_image.layer.cornerRadius = 20
+        league_image.clipsToBounds = true
+        league_image.backgroundColor = .systemBackground
 
         // Initialization code
     }
@@ -49,9 +58,11 @@ class TableViewCell: UITableViewCell {
     func set_favourite_image() {
         if isLeagueInFavourites() {
             favourite.image = UIImage(systemName: "suit.heart.fill")
+            favourite.tintColor = .red
         }
         else {
             favourite.image = UIImage(systemName: "suit.heart");
+            favourite.tintColor = .label
         }
     }
 

@@ -9,6 +9,7 @@ import Foundation
 
 
 class LeagueDetailsViewModel {
+    private var league: League?
     private var leagueID = 0
     private var sportType: SportType = .football
     
@@ -42,6 +43,8 @@ class LeagueDetailsViewModel {
     var render: (() -> Void)?
     var errorOccurred: ((String) -> Void)?
     var didSelecteTeam: ((Int, SportType) -> Void)?
+    var isFavouriteLeague: ((Bool) -> Void)?
+    var updateNavigationTitle: ((String) -> Void)?
     
     var noOfSections: Int {
         return 3
@@ -147,7 +150,7 @@ class LeagueDetailsViewModel {
                     self?.render?()
                 }
             case .failure(let error):
-                self?.errorOccurred?(error.localizedDescription)
+                self?.errorOccurred?("Upcoming Events error: " + error.localizedDescription)
             }
         }
     }
@@ -169,7 +172,7 @@ class LeagueDetailsViewModel {
                     self?.render?()
                 }
             case .failure(let error):
-                self?.errorOccurred?(error.localizedDescription)
+                self?.errorOccurred?("Latest Events error: " + error.localizedDescription)
             }
         }
     }
@@ -188,8 +191,56 @@ class LeagueDetailsViewModel {
                     self?.render?()
                 }
             case .failure(let error):
-                self?.errorOccurred?(error.localizedDescription)
+                self?.errorOccurred?("Teams error: " + error.localizedDescription)
             }
+        }
+    }
+    
+    // MARK: - League
+    func fetchLeague() {
+        ASNetworkService.shared.fetch([League].self, sport: sportType, endpoint: .leagues) { [weak self] result in
+            switch result {
+            case .success(let leagues):
+                self?.league = leagues.filter { $0.id == self?.leagueID }.first
+                self?.updateNavigationTitle?(self?.league?.name ?? "League Details")
+                self?.fetchLeagueFromDB()
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func fetchLeagueFromDB() {
+        guard let leagueDB = getLeagueDB() else { return }
+        let isFavourite = CoreDataClassManager.manager.findElement(leagueData: leagueDB)
+        self.isFavouriteLeague?(isFavourite)
+    }
+    
+    private func getLeagueDB() -> FavouriteLeague? {
+        guard let league = league else { return nil }
+        let leagueDB = FavouriteLeague()
+        leagueDB.id = leagueID
+        leagueDB.sportType = sportType.rawValue
+        leagueDB.leagueName = league.name
+        leagueDB.leagueLogo = league.logoURLString ?? ""
+        return leagueDB
+    }
+    
+    func addLeagueToFavourites() {
+        guard let leagueDB = getLeagueDB() else { return }
+        let isFavourite = CoreDataClassManager.manager.findElement(leagueData: leagueDB)
+        if !isFavourite {
+            CoreDataClassManager.manager.insert_item(item: leagueDB)
+            self.isFavouriteLeague?(true)
+        }
+    }
+    
+    func removeLeagueFromFavourites() {
+        guard let leagueDB = getLeagueDB() else { return }
+        let isFavourite = CoreDataClassManager.manager.findElement(leagueData: leagueDB)
+        if isFavourite {
+            CoreDataClassManager.manager.delete_item(leagueData: leagueDB)
+            self.isFavouriteLeague?(false)
         }
     }
 }
