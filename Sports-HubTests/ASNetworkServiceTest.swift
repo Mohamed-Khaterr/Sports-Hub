@@ -11,7 +11,7 @@ import XCTest
 final class ASNetworkServiceTest: XCTestCase {
     
     func test_footballEndPoint() {
-        let endpoint: ASEndPoint = Football.fixtures(from: "2023-09-28", to: "2023-10-6")
+        let endpoint: ASEndPointProvider = Football.fixtures(from: "2023-09-28", to: "2023-10-6")
         
         XCTAssertEqual(endpoint.path, "football")
         XCTAssertEqual(endpoint.met, "Fixtures")
@@ -20,7 +20,7 @@ final class ASNetworkServiceTest: XCTestCase {
     }
     
     func test_ASEndPointManager() {
-        let endpointManager = ASEndPointManager(Football.fixtures(from: "2023-09-28", to: "2023-10-6"))
+        let endpointManager = ASEndPointProviderManager(Football.fixtures(from: "2023-09-28", to: "2023-10-6"))
         
         // apiv2.allsportsapi.com/football?met=Fixtures&from=2023-09-28&to=2023-10-6&APIkey={{AllSportsAPIKey}}
         XCTAssertEqual(endpointManager.urlString(), "https://apiv2.allsportsapi.com/football")
