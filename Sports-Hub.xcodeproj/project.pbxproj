@@ -423,8 +423,6 @@
 			children = (
 				01CA528D2ACA74D800EEC4BF /* Endpoint */,
 				01CA52A52ACA954D00EEC4BF /* NetworkError.swift */,
-				01CA528E2ACA753800EEC4BF /* ASEndPointProvider.swift */,
-				01CA52902ACA759800EEC4BF /* ASEndPointProviderManager.swift */,
 				01CA52972ACA787D00EEC4BF /* ASNetworkProvider.swift */,
 				01CA52992ACA78BF00EEC4BF /* ASNetworkService.swift */,
 			);
@@ -434,6 +432,8 @@
 		01CA528D2ACA74D800EEC4BF /* Endpoint */ = {
 			isa = PBXGroup;
 			children = (
+				01CA528E2ACA753800EEC4BF /* ASEndPointProvider.swift */,
+				01CA52902ACA759800EEC4BF /* ASEndPointProviderManager.swift */,
 				01CA52952ACA782100EEC4BF /* Football.swift */,
 				0123F30A2ACF215000AAF74C /* Basketball.swift */,
 				01B3F6B72ACF5D4D00490D64 /* Cricket.swift */,
