@@ -55,7 +55,7 @@ struct ASNetworkService: ASNetworkProvider {
         }
     }
     
-    func fetch<T: Decodable>(_ type: T.Type, sport: SportType, endpoint: ASEndpoint, compeletionHandler: @escaping (Result<T, NetworkError>) -> Void) {
+    func fetch<T: Decodable>(_ type: T.Type, sport: SportType, endpoint: ASEndPoint, compeletionHandler: @escaping (Result<T, NetworkError>) -> Void) {
         let urlString = getURLString(sportType: sport)
         
         var params = endpoint.params

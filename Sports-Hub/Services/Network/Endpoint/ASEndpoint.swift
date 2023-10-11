@@ -1,5 +1,5 @@
 //
-//  ASEndpoint.swift
+//  ASEndPoint.swift
 //  Sports-Hub
 //
 //  Created by Khater on 07/10/2023.
@@ -8,7 +8,7 @@
 import Foundation
 
 
-enum ASEndpoint {
+enum ASEndPoint {
     case countries
     case leagues
     case events(from: String, to: String, leagueID: Int)
