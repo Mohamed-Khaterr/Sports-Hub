@@ -14,9 +14,9 @@ struct ASNetworkService: ASNetworkProvider {
     
     private init() {}
     
-    func fetch<T: Decodable>(_ type: T.Type, endpoint: ASEndPoint, compeletionHandler: @escaping (Result<T, NetworkError>) -> Void) {
+    func fetch<T: Decodable>(_ type: T.Type, endpoint: ASEndPointProvider, compeletionHandler: @escaping (Result<T, NetworkError>) -> Void) {
         
-        let endpointManager = ASEndPointManager(endpoint)
+        let endpointManager = ASEndPointProviderManager(endpoint)
         
         AF.request(endpointManager.urlString(), method: .get, parameters: endpointManager.parameters()).response { response in
             switch response.result {

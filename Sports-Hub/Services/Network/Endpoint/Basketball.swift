@@ -8,7 +8,7 @@
 import Foundation
 
 
-enum Basketball: ASEndPoint {
+enum Basketball: ASEndPointProvider {
     case leagues
     case events(from: String, to: String, leagueID: Int? = nil)
     case teams(leagueID: Int)
