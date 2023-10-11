@@ -47,10 +47,10 @@
 		01883D892AD1BDBB00D02C05 /* ASEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01883D882AD1BDBB00D02C05 /* ASEndPoint.swift */; };
 		018FCFF82ACF72C000363F00 /* SportType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018FCFF72ACF72C000363F00 /* SportType.swift */; };
 		01B3F6B82ACF5D4D00490D64 /* Cricket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B3F6B72ACF5D4D00490D64 /* Cricket.swift */; };
-		01CA528F2ACA753800EEC4BF /* ASEndPointProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA528E2ACA753800EEC4BF /* ASEndPointProvider.swift */; };
-		01CA52912ACA759800EEC4BF /* ASEndPointProviderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA52902ACA759800EEC4BF /* ASEndPointProviderManager.swift */; };
 		01BF01E72AD427730056EE4C /* InternetMointor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BF01E62AD427730056EE4C /* InternetMointor.swift */; };
 		01BF01ED2AD449420056EE4C /* Hidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BF01EC2AD449420056EE4C /* Hidden.swift */; };
+		01CA528F2ACA753800EEC4BF /* ASEndPointProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA528E2ACA753800EEC4BF /* ASEndPointProvider.swift */; };
+		01CA52912ACA759800EEC4BF /* ASEndPointProviderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA52902ACA759800EEC4BF /* ASEndPointProviderManager.swift */; };
 		01CA52962ACA782100EEC4BF /* Football.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA52952ACA782100EEC4BF /* Football.swift */; };
 		01CA52982ACA787D00EEC4BF /* ASNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA52972ACA787D00EEC4BF /* ASNetworkProvider.swift */; };
 		01CA529A2ACA78BF00EEC4BF /* ASNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA52992ACA78BF00EEC4BF /* ASNetworkService.swift */; };
@@ -127,11 +127,12 @@
 		01883D862AD198DA00D02C05 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		01883D882AD1BDBB00D02C05 /* ASEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASEndPoint.swift; sourceTree = "<group>"; };
 		018FCFF72ACF72C000363F00 /* SportType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportType.swift; sourceTree = "<group>"; };
+		019E110B2AD71E0500E95E0A /* Sports-Hub.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Sports-Hub.xctestplan"; sourceTree = "<group>"; };
 		01B3F6B72ACF5D4D00490D64 /* Cricket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cricket.swift; sourceTree = "<group>"; };
-		01CA528E2ACA753800EEC4BF /* ASEndPointProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASEndPointProvider.swift; sourceTree = "<group>"; };
-		01CA52902ACA759800EEC4BF /* ASEndPointProviderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASEndPointProviderManager.swift; sourceTree = "<group>"; };
 		01BF01E62AD427730056EE4C /* InternetMointor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetMointor.swift; sourceTree = "<group>"; };
 		01BF01EC2AD449420056EE4C /* Hidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hidden.swift; sourceTree = "<group>"; };
+		01CA528E2ACA753800EEC4BF /* ASEndPointProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASEndPointProvider.swift; sourceTree = "<group>"; };
+		01CA52902ACA759800EEC4BF /* ASEndPointProviderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASEndPointProviderManager.swift; sourceTree = "<group>"; };
 		01CA52952ACA782100EEC4BF /* Football.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Football.swift; sourceTree = "<group>"; };
 		01CA52972ACA787D00EEC4BF /* ASNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASNetworkProvider.swift; sourceTree = "<group>"; };
 		01CA52992ACA78BF00EEC4BF /* ASNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASNetworkService.swift; sourceTree = "<group>"; };
@@ -211,6 +212,7 @@
 		014FC1D62AC3A48C0001BBAB = {
 			isa = PBXGroup;
 			children = (
+				019E110B2AD71E0500E95E0A /* Sports-Hub.xctestplan */,
 				014FC1F62AC3A5C50001BBAB /* README.md */,
 				014FC1E12AC3A48C0001BBAB /* Sports-Hub */,
 				01F840332AD604320084F82D /* Sports-HubTests */,
@@ -653,7 +655,6 @@
 				01CA52982ACA787D00EEC4BF /* ASNetworkProvider.swift in Sources */,
 				01B3F6B82ACF5D4D00490D64 /* Cricket.swift in Sources */,
 				84862E5A2AD1B66E00E605A5 /* LottieWelcomeScreen.swift in Sources */,
-				84862E452AD1735500E605A5 /* Hidden.swift in Sources */,
 				01CA528F2ACA753800EEC4BF /* ASEndPointProvider.swift in Sources */,
 				01883D892AD1BDBB00D02C05 /* ASEndPoint.swift in Sources */,
 				01866DD72AD03E62004386B0 /* TableViewModel.swift in Sources */,
