@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "C63567D0-81FC-4B39-999F-26B8DED3F01F",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Sports-Hub.xcodeproj",
+      "identifier" : "014FC1DE2AC3A48C0001BBAB",
+      "name" : "Sports-Hub"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Sports-Hub.xcodeproj",
+        "identifier" : "01F840312AD604320084F82D",
+        "name" : "Sports-HubTests"
+      }
+    }
+  ],
+  "version" : 1
+}
