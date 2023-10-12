@@ -1,5 +1,5 @@
 //
-//  ASEndPointManager.swift
+//  ASEndPointProviderManager.swift
 //  Sports-Hub
 //
 //  Created by Khater on 01/10/2023.
@@ -8,14 +8,14 @@
 import Foundation
 
 
-struct ASEndPointManager {
+struct ASEndPointProviderManager {
     // Hide API
     private let apiKey = Hidden.apiKey
     private let baseURLString = "https://apiv2.allsportsapi.com"
     
-    private let endpoint: ASEndPoint
+    private let endpoint: ASEndPointProvider
     
-    init(_ action: ASEndPoint) {
+    init(_ action: ASEndPointProvider) {
         self.endpoint = action
     }
     
