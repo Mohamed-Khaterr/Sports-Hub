@@ -16,7 +16,7 @@ final class ASNetworkServiceTest: XCTestCase {
         ASNetworkService.shared.fetch([League].self, sport: .football, endpoint: .leagues) { result in
             switch result {
             case .success(let leagues):
-                XCTAssertGreaterThan(leagues.count, 0, "Leagues is less than 0")
+                XCTAssertGreaterThan(leagues.count, 0, "Leagues count is not greater than 0")
                 exp.fulfill()
             case .failure(let error):
                 XCTFail("Service error: \(error)")
@@ -27,5 +27,17 @@ final class ASNetworkServiceTest: XCTestCase {
     }
     
     func test_fetchWithTwoParameters() {
+        let exp = expectation(description: "waiting for API response")
+        ASNetworkService.shared.fetch([League].self, endpoint: Football.leagues()) { result in
+            switch result {
+            case .success(let leagues):
+                XCTAssertGreaterThan(leagues.count, 0, "Leagues count is not greater than 0")
+                exp.fulfill()
+            case .failure(let error):
+                XCTFail("Service error: \(error)")
+                exp.fulfill()
+            }
+        }
+        waitForExpectations(timeout: 5)
     }
 }
