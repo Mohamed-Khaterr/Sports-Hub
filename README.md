@@ -51,8 +51,10 @@ Sports app allows the user to see all sports, view leagues inside them, see the 
 
 <!-- ____________________________________________________________________________ -->
 ## Technologies
+- [All Sports API](https://allsportsapi.com)
 - CoreData
 - NWPathMonitor
+- Compositional Layout
 
 
 
